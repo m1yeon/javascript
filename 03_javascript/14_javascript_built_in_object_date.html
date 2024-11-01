@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS_14_객체(object)_내장객체_date객체</title>
+  <link rel="stylesheet" href="./css/base.css">
+  <style>
+    /* 공통서식 */
+    h2{display: inline-block;padding: 0px 20px; transform: translateY(3px);}
+    /* h3{padding: 0px 0px 0px 0px;} */
+    .box{
+      background: #eee;
+      padding: 20px 20px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    .p01{padding-top: 15px;}
+    pre{background: #333; color: #fff; font-size: 14px; padding: 20px; box-sizing: border-box; border-radius: 12px; margin: 15px 0px 20px 0px; width: 100%;}
+    .c01{color: aquamarine;}
+    .c_img{width: 600px; padding-top: 15px;}
+    /* ----------------- */
+    .t01{background: #efefef; font-weight: 600; border-radius: 20px; padding: 2px 8px; margin-left: 10px;}
+
+    #clock{
+      line-height: 35px;
+      border-radius: 20px;
+      background: #dd4a48;
+      color: #fff;
+      font-size: 20px;
+      width: 150px;
+      text-align: center;
+      margin: 10px;
+    }
+
+    /*실습예제3*/
+    #Dday_wrapper{
+      border: 1px solid #777;
+      border-radius: 15px;
+      overflow: hidden;
+      width: 100%;
+      text-align: center;
+    }
+    #Dday_wrapper > h3{font-size: 24px; padding: 10px 0px;}
+    #Dday_wrapper > h3 > small{font-size: 16px; color: #dd4a48;}
+
+    .Dday{
+      background: #dd4a48;
+      color: #fff;
+      padding: 15px 0px;
+    }
+    .Dday > p{font-weight: 600; color: #fff;}
+    .Dday  #clock2{font-size: 42px; color: #fff;}
+    .Dday  .dday{padding-right: 20px; font-size: 42px; font-weight: 400;       color: #fff;} 
+  </style>
+</head>
+<body>
+  <a href="../index.html" title="메인페이지 바로가기" class="b_btn">
+    <img src="../images/icon_home.png" alt="icon_home">
+  </a>
+  <h2>14_객체(object)_내장객체_date객체</h2>
+  <p class="p01">&#8226; date 객체는 현재 또는 특정 날짜와 시간에 대한 정보를 제공하는 객체</p>
+  <p>&#8226; 웹페이지의 증권,은행, 뉴스 페이지 등에 오늘의 날짜와 시간을 표시하거나<br> 게시판의 글목록의 오른쪽에 표시하기도 함 (공지사항, 예약, 상품구매, 로그인, 로그아웃, 댓글, 이메일)</p>
+  <p>&#8226; <b>작성법</b><span class="t01">let 변수명 = new Date();</span></p>
+  <br>
+  <div class="box">
+    <h3>1. 날짜와 시간 정보를 제공하는 속성</h3>
+    <p>&#8226; <b>getFullYear();</b> : 날짜정보에서 년도에 대한 정보를 제공</p>
+    <p>&#8226; <b>getMonth();</b> : 날짜정보에서 월에 대한 정보를 제공
+      (0~11까지 표시되기 때문에 _ 실제 월을 출력하기 위해서는 +1 해줘야함)</p>
+    <p>&#8226; <b>getDate();</b> : 날짜정보에서 일에 대한 정보를 제공</p>
+    <p>&#8226; <b>getDay();</b> : 날짜정보에서 요일에 대한 정보를 숫자로 제공(0~6-일~월)</p>
+    <p>&#8226; <b>getHour();</b> : 날짜정보에서 시간(0~23)에 대한 정보를 제공</p>
+    <p>&#8226; <b>getSecond();</b> : 날짜정보에서 초(0~59)에 대한 정보를 제공</p>
+    <p>&#8226; <b>getMilliseconds();</b> : 날짜정보에서 밀리초(1/1000)에 대한 정보를 제공</p>
+  </div>
+
+  <div class="box">
+    <h3>날짜객체 실습예제1 _ 뉴스사이트의 오늘의 날짜 표시하기</h3>
+    <script>
+      //1. 변수선언
+      let today = new Date();
+      document.write(`<p>${today}</p>`);
+      document.write(`<p>월 : ${today.getMonth()+1}</p>`); //월 getMonth();
+      document.write(`<p>일 : ${today.getDate()}</p>`); //일 getDate();
+      document.write(`<p>요일 : ${today.getDay()}</p>`); //요일 getDay();
+
+      let m = today.getMonth()+1; //월
+      let d = today.getDate(); //일
+      let day = today.getDay(); //요일
+      let yoil =['일','월','화','수','목','금','토']; //요일 object 만들기
+      document.write(`<p>${m}월 ${d}일 (${yoil[day]})</p>`); //getDay()로 구한 요일 인덱스 번호를 사용해 요일 객체에서 요일 뽑아내기  
+    </script>
+    <img src="./images/14_date_code1.JPG" alt="실습예제1 JS 코드 보기" class="c_img">
+  </div>
+
+  <div class="box">
+    <h3>날짜객체 실습예제2. 실시간 디지털 온라인 시계</h3>
+    <div id="clock"></div>
+    <script>  
+      function startTime(){
+        //시, 분, 초 변수선언
+        let today1 = new Date();
+        let h = today1.getHours();
+        let mi = today1.getMinutes();
+        let s = today1.getSeconds();
+  
+        //앞에 0문자 붙이기
+        h = checkNum(h);
+        mi = checkNum(mi);
+        s = checkNum(s);
+  
+        document.getElementById('clock').innerHTML=`${h} : ${mi} : ${s}`;
+  
+        //시간객체를 사용하여 0.5초마다 startTime함수를 호출
+        let t = setTimeout(startTime, 500);
+      }
+  
+      function checkNum(i){
+        if(i<10){ //i가 10보다 작다면
+          i = '0'+i; // i앞에 0문자를 붙인다.
+        }
+        return i; //다시 i값을 start타임에 넘긴다
+      }
+      startTime();
+    </script>
+    <img src="./images/14_date_code2.JPG" alt="실습예제2 JS 코드 보기" class="c_img">
+  </div>
+
+  <div class="box">
+    <h3>날짜객체 실습예제3. D-day 날짜와 시간 표시하기(2024/12/31 기준)</h3>
+    <p>사용자가 지정한 날짜까지 계산하여 시 : 분 : 초 표시하기 (예 : 홈쇼핑)</p>
+
+    <div id="Dday_wrapper">
+      <h3><small>ONLY 24시간 환상의 할인템</small><br>오늘의 특가</h3>
+      <div class="Dday">
+        <p>오늘의 쇼핑을 내일로 미루지 말자</p>
+        <p><span class="dday">D-day</span>
+          <span id="clock2"></span></p>
+      </div>
+    </div>
+    <img src="./images/14_date_code3.JPG" alt="실습예제2 JS 코드 보기" class="c_img">
+  </div>
+
+    <script>
+      function getDday(){ //d-day 구하여 출력하는 함수
+        //1. Dday날짜 지정하기
+        const setDate = new Date('2024-12-31'); // 마지막 날짜(last)
+        const today2 = new Date(); // 오늘 날짜(= 시작날자)
+
+        //2. dday날짜에서 현재 날짜의 차이 구하기
+        const distance = setDate - today2;
+        let disDay = Math.floor(distance/(1000*60*60*24));
+        let disHour = Math.floor(distance/(1000*60*60)%24); //시간으로 계산하여 저장
+        let disMin = Math.floor((distance/(1000*60))%60);  //분으로 계산하여 저장
+        let disSec = Math.floor(distance/1000%60); //초로 계산하여 저장
+
+        disDay = checkNum2(disDay);
+        disHour = checkNum2(disHour);
+        disMin = checkNum2(disMin);
+        disSec = checkNum2(disSec);
+
+        document.getElementById('clock2').innerHTML=`${disDay}일 ${disHour} : ${disMin} : ${disSec}`;
+
+        //매 1초 마다 함수를 반복호출 하여 자동으로 시간이 바뀌게 함
+        let t = setTimeout(getDday, 1000); 
+      }
+
+      //시분초가 한 자리 숫자일 경우 앞에 '0'을 붙여준다.
+      function checkNum2(i){
+        if(i<10){
+          i= '0'+i;
+        }
+        return i;
+      }
+
+      getDday(); //함수호출하여 내용출력하기
+    </script>
+  </article>
+</body>
+</html>

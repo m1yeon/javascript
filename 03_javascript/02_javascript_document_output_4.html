@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS_02_자바스크립트 문서출력방법 4가지</title>
+    <link rel="stylesheet" href="./css/base.css" type="text/css">
+    <style>
+		h2{display: inline-block;padding: 0px 20px; transform: translateY(3px);}
+		.box{
+			background: #eee;
+			padding: 20px 20px;
+			border-radius: 20px;
+			margin-bottom: 20px;
+		}
+        .p01{padding-top: 15px;}
+		.t01{font-size: 15px; color: #777;}
+        footer{
+            background: #333; color: #fff; height: 70px; line-height: 70px; text-align: center; font-size: 14px;}
+        ol li{padding-bottom: 5px;}
+    </style>
+</head>
+<body>
+    <a href="../index.html" title="메인페이지 바로가기" class="b_btn">
+		<img src="../images/icon_home.png" alt="icon_home">
+	</a>
+    <h2>02_자바스크립트 문서출력방법 4가지</h2>
+    <p class="p01">자바스크립트 언어를 통해 문서에 내용을 출력하는 방법 4가지에 대해 알아본다.</p>
+    <br>
+    <div class="box">
+        <ol>
+            <li>document 객체에 wirte 메서드를 사용 - <b>document.write('출력할 내용');</b></li>
+            <li>window 객체를 활용하여 메세지 띄우기 - <b>window.alert('출력할 내용');</b></li>
+            <li>브라우저 개발자모드의 console모드에서 내용 출력하기 - <b>console.log('출력할 내용');</b></li>
+            <li>document 객체의 innerHTML메서드로 내용 출력하기 - <b>document.getELement('id명').innerHTML="출력할 내용";</b></li>
+        </ol>
+        <p id="p02"></p>
+        <p id="p03"></p>
+    </div>
+
+    <!-- 내부스크립트 -->
+    <script>
+        document.write('<p>document.write메서드로 내용 출력하기</p>');
+        window.alert('윈도우 객체를 사용하여 메세지 띄우기');
+        console.log('입력한 내용을 콘솔모드에서 확인하기'); //console.log는 개발자모드에서 확인가능함
+        document.getElementById('p02').innerHTML="innerHTML 속성으로 내용 채우기 _ 내가 선택한 id에 아무 내용이나 쓸 수 있음";
+        //1. document.getElmentById('p02') 도큐먼트 안에 있는 p02이름의 id를 선택하세요
+        //2. 문서 내용을 쓸 수 있음
+        document.getElementById('p03').innerHTML="innerHTML 속성으로 내용 채우기 _ <b>내용에 태그를 사용해 태그 안에 내용을 작성할 수 있음</b>";
+    </script>
+    <!-- html 문서를 먼저 읽고, 자바스크립트가 실행되어야 하기 때문에 자바 스크립트가 적용하고자 하는 html 문서 밑에 있어야함 -->
+
+    <!-- 외부스크립트 연결 -->
+    <script src="./script/1213_02_footer.js"></script>
+</body>
+</html>

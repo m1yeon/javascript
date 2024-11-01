@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS_16_객체(object)_내장객체_문서 객체(document object)</title>
+  <link rel="stylesheet" href="./css/base.css">
+  <style>
+    /* 공통서식 */
+    h2{display: inline-block;padding: 0px 20px; transform: translateY(3px);}
+    /* h3{padding: 0px 0px 0px 0px;} */
+    .box{
+      background: #eee;
+      padding: 20px 20px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    .p01{padding-top: 15px;}
+    pre{background: #333; color: #fff; font-size: 14px; padding: 20px; box-sizing: border-box; border-radius: 12px; margin: 15px 0px 20px 0px; width: 100%;}
+    .c01{color: aquamarine;}
+    .c_img{width: 600px; padding-top: 15px;}
+    .img_box{width: 90%; margin:0px auto;}
+    /* ----------------- */
+    .t01{font-weight: 600; color: #dd4a48;}
+    .btn{padding: 3px 6px; margin-top: 10px;}
+  </style>
+</head>
+<body>
+  <a href="../index.html" title="메인페이지 바로가기" class="b_btn">
+    <img src="../images/icon_home.png" alt="icon_home">
+  </a>
+  <h2>16_객체(object)_내장객체_문서 객체(document object)</h2>
+  <p class="p01">&#8226; DOM(Document Object Model)은 넓은 의미로는 웹브라우저가 html을 인식하는 방법이고,<br>좁은 의미로는 웹문서안에 있는 요소(객체)들의 집합이다.</p>
+  <p>&#8226; 웹브라우저(크롬, 사파리, 파이어폭스, 오페라, 익스플로러, edge,모바일 브라우저)마다 DOM구현이 호환되지 않아서 W3C에서 DOM에 대한 표준규칙을 작성하였다.</p>
+  <br>
+  <div class="box">
+    <h3>1. DOM tree 구조의 이해</h3>
+    <p>&#8226; DOM은 노드들의 집합이라고 할 수 있으며,  DOM의 노드에는 요소노드, 속성노드, 텍스트노드로 구성되어 있음</p>
+    <p>&#8226; 노드는 DOM의 구조를 이루는 최소단위이며, 이 노드들의 집합체가 DOM이라 할 수 있음</p>
+    <p>&#8226;  html의 태그를 자바스크립트에서는 노드라고 부름</p>
+    <p>&#8226; img 태그는 img src = 'txt'  img가 요소노드, src = 속성노드, src값을 텍스트노드라고 함</p>
+  </div>
+
+  <div class="box">
+    <h3>2. DOM을 구성하는 기본원칙</h3>
+    <p>&#8226; 모든 html태그 = 요소(element)노드</p>
+    <p>&#8226; html 태그에서 사용하는 텍스트 내용은 자식 노드인 텍스트 노드이다.</p>
+    <p>&#8226; html 태그에 있는 속성은 자식 노드인 속성 노드이다.</p>
+    <p>&#8226; 주석은 주석(comment)노드임</p>
+      
+    <div class="img_box">
+      <img src="./images/dom.jpg" alt="돔 설명1">
+    </div>
+  </div>
+
+  <div class="box">
+    <h3>3. document 객체의 메소드</h3>
+    <p>&#8226; <b>open();</b> : 데이터를 보낼 준비</p>
+    <p>&#8226; <b>close();</b> : 문서에 데이터 출력을 마무리함</p>
+    <p>&#8226; <b>clear();</b> : 브라우저에서 문서를 지움</p>
+    <p>&#8226; <b>write();</b> : 문서에 데이터를 출력함</p>
+    <p>&#8226; <b>writeIn();</b> : 문서에 줄(line) 바꾸기를 포함하여 데이터를 출력함</p>
+  </div>
+
+  <div class="box">
+    <h3>4. document 객체의 속성</h3>
+    <p>&#8226; <b>domain</b> : 현재 문서가 있는 서버의 도메인 이름</p>
+    <p>&#8226; <b>title</b> : 현재 문서의 제목</p>
+    <p>&#8226; <b>bgColor</b> : 문서의 배경색</p>
+    <p>&#8226; <b>fgColor</b> : 문서의 글자색</p>
+    <p>&#8226; <b>linkColor</b> : 문서의 링크 글자색</p>
+    <p>&#8226; <b>alinkColor</b> : 링크를 클릭하였을 때 글자색</p>
+    <p>&#8226; <b>vlinkColor</b> : 방문했던 링크의 글자색</p>
+    <p>&#8226; <b>anchors</b> : 문서의 anchor들의 배열</p>
+    <p>&#8226; <b>cookie</b> : 쿠키에 대한 정보</p>
+    <p>&#8226; <b>URL</b> : 문서의 url 주소</p>
+  </div>
+  <!-- 실습1 -->
+  <div class="box">
+    <h3>실습1. 현재 작성 중인 문서의 정보 알아보기</h3>
+    <p>&#8226; 문서의 title 정보와 url 정보 출력하기</p>
+    <script>
+      document.write(`<p>현재 문서의 title 제목은 <span class="t01">${document.title}</span>이고, 문서의 url 주소는 <span class="t01">${document.URL}</span>이다.</p>`);
+    </script>
+    <pre>
+      <span class="c01">//문서의 title정보와, url정보 출력하기 </span>
+      document.write(`현재 문서의 title 제목은 <span class="t01">${document.write}</span>이고, 문서의 url 주소는 <span class="t01">${document.URL}</span>이다`);</pre>
+  </div>
+  <!-- 실습2 -->
+  <div class="box">
+    <h3>2. 실습2. 버튼 클릭시 문서안의 글자색, 배경색 변경하기(토글버튼 0, 1) _ 다크모드</h3>
+    <p>&#8226; 버튼 클릭시 문서안의 글자색 변경해 다크모드 설정하기 _ 글자색 : 흰색 / 배경색 : #333</p>
+    <p><input type="button" value="다크모드" id="dark_btn" class="btn"></p>
+    <script>
+      //1. 버튼 변수 선언
+      const Dbtn = document.getElementById('dark_btn');
+      let on = 0;
+
+      //2. 버튼 클릭 이벤트 _ 
+      Dbtn.addEventListener('click',function(){
+        if(on==0){ //사용자가 버튼을 클릭하면 변수값과 비교하여 on값이 0과 같다면 아래 내용 실행
+          document.bgColor='#333';
+          document.fgColor='#fff';
+          on=1; 
+        }else{ //on값이 0이 아니라면 아래 내용 실행
+          document.bgColor='#fff';
+          document.fgColor='#333';
+          on=0;
+        }
+      });
+    </script>
+    <pre>
+      <span class="c01">//1. 버튼 변수 선언</span>
+      const Dbtn = document.getElementById('dark_btn');
+      let on = 0;
+
+      <span class="c01">//2. 버튼 클릭 이벤트 _ on=0 / on=1 버튼을 만든다고 생각하기</span>
+      Dbtn.addEventListener('click',function(){
+        if(on==0){  <span class="c01">//사용자가 버튼을 클릭하면 변수값과 비교하여 on값이 0과 같다면 아래 내용 실행</span>
+          document.bgColor='#333';
+          document.fgColor='#fff';
+          on=1; 
+        }else{  <span class="c01">//on값이 0이 아니라면 아래 내용 실행</span>
+          document.bgColor='#fff';
+          document.fgColor='#333';
+          on=0;
+        }
+      });
+    </pre>
+  </div>
+  <!-- 실습3 -->
+  <div class="box">
+    <h3>실습3. 버튼 클릭시 h3 태그만 선택하여 글자색 '빨강'으로 변경하기</h3>
+    <p><input type="button" value="버튼 클릭시 h3 서식 변경하기" id="h3_btn" class="btn"></p>
+    <script>
+      //1. 버튼 변수선언
+      const h3_btn = document.getElementById('h3_btn');
+      let n = 0;
+
+      //2. 버튼 클릭시 해당 내용 실행
+      h3_btn.addEventListener('click',function(){
+        const title03 = document.getElementsByTagName('h3');
+        //console.log(title03.length) //테스트_버튼 클릭시 h3 태그가 몇개인지 출력
+
+        if(n==0){ //사용자가 버튼을 클릭하면 변수값과 비교하여 on값이 0과 같다면 아래 내용 실행
+          //반복문을 사용해 h3의 개수만큼 반복하여 서식을 적용함
+          for(let a=0; a<=title03.length; a++){ 
+          title03[a].style.color='#dd4a48';
+          n=1; 
+        }
+
+        }else{ //on값이 0이 아니라면 아래 내용 실행
+          for(let a=0; a<=title03.length; a++){
+          title03[a].style.color='#333';
+          n=0;
+        }
+        }
+      });
+      //fgColor는 document객체의 속성으로 사용
+      // 일반 문서안의 글자색상을 변경하고자 할 때는 style,color를 사용함
+    </script>
+    <pre>
+      <span class="c01">//1. 버튼 변수선언</span>
+      const h3_btn = document.getElementById('h3_btn');
+      let n = 0;
+
+      <span class="c01">//2. 버튼 클릭시 해당 내용 실행</span>
+      h3_btn.addEventListener('click',function(){
+        const title03 = document.getElementsByTagName('h3');
+        <span class="c01">//console.log(title03.length) //테스트_버튼 클릭시 h3 태그가 몇개인지 출력</span>
+
+        if(n==0){ <span class="c01">//사용자가 버튼을 클릭하면 변수값과 비교하여 on값이 0과 같다면 아래 내용 실행</span>
+          <span class="c01">//반복문을 사용해 h3의 개수만큼 반복하여 서식을 적용함</span>
+          for(let a=0; a<=title03.length; a++){ 
+          title03[a].style.color='#dd4a48';
+          n=1; 
+        }
+
+        }else{ <span class="c01">//on값이 0이 아니라면 아래 내용 실행</span>
+          for(let a=0; a<=title03.length; a++){
+          title03[a].style.color='#333';
+          n=0;
+        }
+        }
+      });
+      <span class="c01">//fgColor는 document객체의 속성으로 사용
+      <span class="c01">// 일반 문서안의 글자색상을 변경하고자 할 때는 style,color를 사용함
+    </pre>
+  </div>
+  <div class="box">
+    <h3>실습4. 버튼 클릭시 li태그만 선택하여 서식 적용하기</h3>
+    <p>p태그 입니다</p>
+    <ul>
+      <li>li태그 입니다.</li>
+      <li>li태그 입니다.</li>
+    </ul>
+    <p><input type="button" value="버튼 클릭 시 li태그 서식 변경" id="li_btn" class="btn"></p>
+    <script>
+      //1. 버튼 변수 선언
+      const li_btn = document.getElementById('li_btn');
+      let b = 0;
+
+      //2. 버튼 클릭시 해당 내용 실행
+      li_btn.addEventListener('click',function(){
+        const list = document.getElementsByTagName('li');
+
+        if(b==0){
+          for(let c=0; c<=list.length; c++){
+            list[c].style.color = '#3a84cb';
+            list[c].style.backgroundColor = '#fefaa8';
+            b=1;
+          }
+        }else{
+          for(let c=0; c<=list.length; c++){
+            list[c].style.color = '#333';
+            list[c].style.backgroundColor = '#efefef';
+            b=0;
+          }
+        }
+      });
+    </script>
+    <pre>
+      <span class="c01">//1. 버튼 변수 선언</span>
+      const li_btn = document.getElementById('li_btn');
+      let b = 0;
+
+      <span class="c01">//2. 버튼 클릭시 해당 내용 실행</span>
+      li_btn.addEventListener('click',function(){
+        const list = document.getElementsByTagName('li');
+
+        if(b==0){
+          for(let c=0; c<=list.length; c++){
+            list[c].style.color = '#3a84cb';
+            list[c].style.backgroundColor = '#fefaa8';
+            b=1;
+          }
+        }else{
+          for(let c=0; c<=list.length; c++){
+            list[c].style.color = '#333';
+            list[c].style.backgroundColor = '#efefef';
+            b=0;
+          }
+        }
+      });</pre>
+  </div>
+</body>
+</html>

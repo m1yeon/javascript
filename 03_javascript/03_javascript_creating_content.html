@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS_03_자바스크립트로 콘텐츠 제작하기</title>
+    <link rel="stylesheet" href="./css/base.css" type="text/css">
+    <style>
+        h2{display: inline-block;padding: 0px 20px; transform: translateY(3px);}
+        h3{padding: 0px 0px 10px 0px;}
+		.box{
+			background: #eee;
+			padding: 20px 20px;
+			border-radius: 20px;
+			margin-bottom: 20px;
+		}
+        .p01{padding-top: 15px;}
+		.t01{font-size: 15px; color: #777;}
+        pre{background: #333; color: #fff; font-size: 14px; padding: 20px; box-sizing: border-box; border-radius: 15px;}
+        .c01{color: aquamarine;}
+
+        /* 실습1 */
+        .ex01{position: relative;}
+        .ex01 > input{padding: 5px 10px; position: absolute; left: 150px;}
+        #btn_on{ top: 70px;}
+        #btn_off{ top: 110px;}
+        #bulb{padding: 20px;}
+    </style>
+</head>
+<body>
+    <a href="../index.html" title="메인페이지 바로가기" class="b_btn">
+		<img src="../images/icon_home.png" alt="icon_home">
+	</a>
+    <h2>03_자바스크립트로 콘텐츠 제작하기</h2>
+    <p class="p01">자바스크립트 언어를 활용하여 다양한 콘텐츠 제작해보기</p>
+    <p>웹페이지의 자바스크립트로 구현된 콘텐츠 정보 수집하기 : <br>
+        네이버 날씨, 뉴스, 증시정보, 언론사 아이콘 목록, 좌/우 버튼, 트렌드 쇼핑 콘텐츠, 오늘 읽을 만한 글, 새로고침(f5)시 배너 변경, 쿠키정보를 활용한 '오늘 하루 열지 않음', 패밀리 사이트, 움직이는 이미지 슬라이드, 버튼 클릭, 마우스 오버시 변경되는 모든 정보 콘텐츠</p>
+    <br>
+    <div class="box">
+        <h3>실습1. 버튼으로 전구 on/off</h3>
+        <p>전구 이미지를 활용하여 버튼 클릭시 해당 이미지의 src 속성값을 변경하여 다른 이미지가 나오게 하기</p>
+        <div class="ex01">
+            <img src="./images/1213img/pic_bulboff.gif" alt="전구끄기" id="bulb">
+            <input type="button" value="전구켜기" id="btn_on">
+            <input type="button" value="전구끄기" id="btn_off">
+        </div>
+        <pre>
+            <span class="c01">//버튼 변수 저장</span>
+            const btn_on = document.getElementById('btn_on'); 
+            const btn_off = document.getElementById('btn_off'); 
+
+            btn_on.addEventListener('click', function(){ <span class="c01">//btn_on 버튼 클릭시</span>
+            <span class="c01">// window.alert('버튼을 클릭 하세요'); 클릭 테스트 _ 버튼 클릭시 안내창 띄우기</span>
+                document.getElementById('bulb').src='./images/1213img/pic_bulbon.gif'; <span class="c01">// id="bulb"의 src 주소값 변경</span>
+            });
+    
+            btn_off.addEventListener('click', function(){<span class="c01">//btn_on 버튼 클릭시</span>
+                document.getElementById('bulb').src='./images/1213img/pic_bulboff.gif'; <span class="c01">// id="bulb"의 src 주소값 변경</span>
+            });
+        </pre>
+    </div>
+
+    <div class="box">
+        <h3>실습2. 이미지에 마우스 오버시 사진 변경하기</h3>
+        <img src="images/1213img/mbn04.png" alt="배너" id="banner">
+        <pre>
+            <span class="c01">//변수 저장</span>
+            const m_hover = document.getElementById('banner');
+
+            m_hover.addEventListener('mouseover', function(){ <span class="c01">//마우스 오버시</span>
+                document.getElementById('banner').src='images/1213img/mbn04ov.png';
+            });
+
+            m_hover.addEventListener('mouseout', function(){ <span class="c01">//마우스 아웃시 </span>
+                document.getElementById('banner').src='images/1213img/mbn04.png';
+            });
+        </pre>
+    </div>
+    <script>
+        // 실습1
+        const btn_on = document.getElementById('btn_on'); //버튼 변수 저장
+        const btn_off = document.getElementById('btn_off'); //버튼 변수 저장
+        btn_on.addEventListener('click', function(){
+            document.getElementById('bulb').src='./images/1213img/pic_bulbon.gif';
+        });
+        btn_off.addEventListener('click', function(){
+            // window.alert('버튼을 클릭 하세요');
+            document.getElementById('bulb').src='./images/1213img/pic_bulboff.gif';
+        });
+
+        // 실습2
+        const m_hover = document.getElementById('banner');
+        m_hover.addEventListener('mouseover', function(){
+            document.getElementById('banner').src='images/1213img/mbn04ov.png';
+        });
+        m_hover.addEventListener('mouseout', function(){
+            document.getElementById('banner').src='images/1213img/mbn04.png';
+        });
+    </script>
+</body>
+</html>

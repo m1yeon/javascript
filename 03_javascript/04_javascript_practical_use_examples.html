@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/base.css" type="text/css">
+  <title>JS_04_자바스크립트 실무활용 예제</title>
+  <style>
+    h2{display: inline-block;padding: 0px 20px; transform: translateY(3px);}
+    h3{padding: 0px 0px 10px 0px;}
+		.box{
+			background: #eee;
+			padding: 20px 20px;
+			border-radius: 20px;
+			margin-bottom: 20px;
+		}
+    .p01{padding-top: 15px;}
+    /* 1. */
+    .box > input{padding: 3px 10px; transition: 0.4s; border-radius: 5px; border: 1px solid #333; margin-left: 5px; margin-top: 10px;}
+    .box > input:hover{background: #333; color: #fff;}
+    #p01{padding: 4px 10px; background: #C0D8C0; display: inline-block;}
+
+    pre{background: #333; color: #fff; font-size: 14px; padding: 20px; box-sizing: border-box; border-radius: 15px;}
+    .c01{color: aquamarine;}
+
+    .box_inner{display: flex; width: 100%;}
+    #m_wrap{ width: 340px; height: fit-content; border: 1px solid #000; margin-right: 20px;}
+    #m_wrap > header > img, #m_wrap > footer > img{vertical-align: top; width: 100%;}
+    #m_wrap header{height: fit-content;}
+    #m_wrap nav{background: #cbcbd3; text-align: center;}
+    #m_wrap nav img{width: 80px;}
+    .box_inner > pre{width: calc(100% - 360px);}
+  </style>
+</head>
+<body>
+  <a href="../index.html" title="메인페이지 바로가기" class="b_btn">
+		<img src="../images/icon_home.png" alt="icon_home">
+	</a>
+  <h2>04_자바스크립트 실무활용 예제</h2>
+  <p class="p01">자바스크립트를 활용하여 다양한 콘텐츠 구현하기</p>
+  <br>
+  <div class="box">
+    <h3>1. 버튼 클릭시 해당하는 요소의 글자 크기 확대/축소</h3>
+    <p id="p01">건강보험공단, 산업인력공단 등 사이트에서 사용하는 글자확대, 축소하기</p><br>
+    <input type="button" value="글자확대(24px)" onclick="document.getElementById('p01').style.fontSize='24px'">
+    <input type="button" value="글자축소(16px)" onclick="document.getElementById('p01').style.fontSize='16px'">
+    <input type="button" value="화면확대(+)" id="btn_plus">
+    <input type="button" value="화면축소(-)" id="btn_minus">
+    <input type="button" value="기본설정(100%)" id="btn_default">
+    <br><br>
+    <pre>
+      <span class="c01">//글자 확대/축소 _ input 태그안에 자바스크립트 언어를 사용해 구현</span>
+      input onclick="document.getElementById('p01').style.fontSize='24px'"
+
+        <span class="c01">//0-1. 변수 설정</span>
+        let nowZoom = 100; <span class="c01">//화면 초기값을 변수에 저장</span>
+        const btn_plus = document.getElementById('btn_plus');
+        const btn_minus = document.getElementById('btn_minus');
+        const btn_default = document.getElementById('btn_default');
+
+        <span class="c01">//0-2. zoom 함수 설정</span>
+        function zoom(){
+          document.body.style.zoom=nowZoom+'%';
+          if(nowZoom==70){ 
+            alert('더 이상 축소하실 수 없습니다.'); <span class="c01">//70% 이하 내려갈 수 없게</span>
+          }
+          if(nowZoom==200){
+            alert('더 이상확대하실 수 없습니다.'); <span class="c01">// 200% 이상 커질 수 없게</span>
+          };
+        };
+
+        <span class="c01">//1. 화면 확대 하기</span>
+        btn_plus.addEventListener('click', function(){
+          <span class="c01">// window.alert('화면확대 버튼을 클릭하셨습니다.'); _ 클릭 테스트</span>
+          nowZoom = nowZoom+20; <span class="c01">//버튼 클릭시 nowZoon 에 20 더해줌</span>
+          if(nowZoom>=200){  <span class="c01">//만약 변수값이 200보다 커지면</span>
+            nowZoom=200; <span class="c01">//200으로 설정하여 더 이상 커지지 않게 설정함</span>
+          }
+          zoom();
+        });
+
+        <span class="c01">//2. 화면축소하기</span>
+        btn_minus.addEventListener('click',function(){
+          nowZoom = nowZoom-10;
+
+          <span class="c01">// 최대 축소비율</span>
+          if(nowZoom<=70){
+            nowZoom=70;
+          }
+          zoom();
+        });
+
+        <span class="c01">//3. 원래비율로 돌리기</span>
+        btn_default.addEventListener('click',function(){
+          nowZoom=100;
+          zoom();
+        });
+    </pre>
+  </div>
+
+  <div class="box">
+    <h3>2. 버튼 클릭시 조명 ON/OFF 기능 구현하기</h3>
+    <div class="box_inner">
+      <div id="m_wrap">
+        <header><img src="./images/1213img/car_01.jpg" alt="" id="car"></header>
+        <nav id="gnb">
+          <img src="./images/1213img/light_off.png" alt="조명끄기" id="light_off">
+          <img src="./images/1213img/light_on.png" alt="조명켜기" id="light_on">
+        </nav>
+        <footer>
+          <img src="./images/1213img/car_03.jpg" alt="푸터이미지" id="footer">
+        </footer>
+      </div>
+      <pre>
+        <span class="c01">//on/off 버튼 변수 설정</span>
+        const l_off = document.getElementById('light_off');
+        const l_on = document.getElementById('light_on');
+      
+        <span class="c01">//전구끄기</span>
+        l_off.addEventListener('click', function(){
+          <span class="c01">//window.alert('off'); _ 클릭 테스트</span> 
+          <span class="c01">// 1. header 이미지 변경</span>
+          document.getElementById('car').src='./images/1213img/car01_01.jpg';
+          <span class="c01">//2. gnb 배경 변경</span>
+          document.getElementById('gnb').style.backgroundImage="url(./images/1213img/btn_back.jpg)";
+          <span class="c01">//3. footer 배경 변경</span>
+          document.getElementById('footer').src='./images/1213img/car01_03.jpg';
+        });
+      
+        <span class="c01">//전구켜기</span>
+        l_on.addEventListener('click', function(){
+        <span class="c01">//window.alert('on'); _ 클릭 테스트</span> 
+          document.getElementById('car').src='./images/1213img/car_01.jpg';
+          document.getElementById('gnb').style.background="#cbcbd3";
+          document.getElementById('footer').src='./images/1213img/car_03.jpg';
+      </pre>
+    </div>
+  </div>
+
+  <script>
+    let nowZoom = 100; //화면 초기값을 변수에 저장함 (nowZoom 이라는 변수에 100이라는 값을 저장)
+    const btn_plus = document.getElementById('btn_plus');
+    const btn_minus = document.getElementById('btn_minus');
+    const btn_default = document.getElementById('btn_default');
+
+    //1. 화면확대하기
+    btn_plus.addEventListener('click', function(){
+      // window.alert('화면확대 버튼을 클릭하셨습니다.');
+      nowZoom = nowZoom+20;
+      if(nowZoom>=200){ //만약 변수값이 200보다 커지면
+        nowZoom=200; //200으로 설정하여 더 이상 커지지 않게 설정함
+      }
+      zoom();
+    });
+
+    function zoom(){
+      document.body.style.zoom=nowZoom+'%';
+      if(nowZoom==70){
+        alert('더 이상 축소하실 수 없습니다.'); //70% 이하 내려갈 수 없게
+      }
+      if(nowZoom==200){
+        alert('더 이상확대하실 수 없습니다.'); // 200% 이상 커질 수 없게
+      };
+    };
+
+    //2. 화면축소하기
+    btn_minus.addEventListener('click',function(){
+      // window.alert('화면축소 버튼을 클릭하셨습니다.');
+      nowZoom = nowZoom-10;
+
+      // 최대 축소비율
+      if(nowZoom<=70){
+        nowZoom=70;
+      }
+      zoom();
+    });
+
+    //3. 원래비율로 돌리기
+    btn_default.addEventListener('click',function(){
+      // window.alert('기본설정 버튼을 클릭하셨습니다.');
+      nowZoom=100;
+      zoom();
+    });
+  
+
+
+    //------------------------------------------
+    // 실습2
+  
+  const l_off = document.getElementById('light_off');
+  const l_on = document.getElementById('light_on');
+
+  //전구끄기
+  l_off.addEventListener('click', function(){
+    // window.alert('전구끄기 성공');
+    // 1. header 이미지 체인지
+    document.getElementById('car').src='./images/1213img/car01_01.jpg';
+    //2. gnb 배경 변경
+    document.getElementById('gnb').style.backgroundImage="url(./images/1213img/btn_back.jpg)";
+    //3. footer 배경 변경
+    document.getElementById('footer').src='./images/1213img/car01_03.jpg';
+  });
+
+  //전구켜기
+  l_on.addEventListener('click', function(){
+    // window.alert('전구켜기 성공');
+    document.getElementById('car').src='./images/1213img/car_01.jpg';
+    document.getElementById('gnb').style.background="#cbcbd3";
+    document.getElementById('footer').src='./images/1213img/car_03.jpg';
+  });
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </script>
+</body>
+</html>

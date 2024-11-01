@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/base.css" type="text/css">
+  <title>JS_05_변수의 개념과 활용</title>
+  <style>
+    h2{display: inline-block;padding: 0px 20px; transform: translateY(3px);}
+    h3{padding: 0px 0px 10px 0px;}
+		.box{
+			background: #eee;
+			padding: 20px 20px;
+			border-radius: 20px;
+			margin-bottom: 20px;
+		}
+    .p01{padding-top: 15px;}
+    pre{background: #333; color: #fff; font-size: 14px; padding: 20px; box-sizing: border-box; border-radius: 12px; margin-top: 15px;}
+    .c01{color: aquamarine;}
+  </style>
+</head>
+<body>
+  <a href="../index.html" title="메인페이지 바로가기" class="b_btn">
+		<img src="../images/icon_home.png" alt="icon_home">
+	</a>
+  <h2>05_변수의 개념과 활용</h2>
+  <p class="p01">&#8226; <b>변수(variable)란? 변하는 데이터를 저장하기 위한 일종의 메모리 공간</b></p>
+  <p>&#8226; 변수에 대입된 값은 항상 마지막에 저장된 값이 출력 됨</p>
+  <br>
+  <div class="box">
+    <h3>1. 변수의 종류</h3>
+    <p><b>(1) 지역변수</b> : 문서 전체에 영향을 주는 변수</p>
+    <p><b>(2) 지역변수</b> : 함수(function)내에서 선언되어 사용되는 변수로서 그 함수 지역에서만 영향력을 가지는 변수(지역화폐개념)</p>
+    <pre>
+      let a = 10; <span class="c01">//전역변수</span>
+
+      function 함수명(){
+        let b = 5; <span class="c01">//지역변수</span>
+      }
+    </pre>
+  </div>
+  <div class="box">
+    <h3>2. 변수의 선언 방법</h3>
+    <p>&#8226; 변수 선언시 'var', 'let', 'const' 키워드를 변수명 앞에 붙여 선언</p>
+    <p>&#8226; 자바스크립트 <b>최신버전 es6에서는 'let', 'const' 사용을 추천</b>함</p>
+    <p>&#8226; <b>var 변수명;</b> or <b>let 변수명;</b> or <b>const 변수명;</b></p>
+    <p>예) var a=10; let b=50+23; const c=1000;</p>
+  </div>
+  <div class="box">
+    <h3>3. 변수명 작성시 주의사항</h3>
+    <p>변수명을 작성하고자 할 때는 아래 사항을 주의해야 함</p>
+      <p>&#8226; 변수명은 영문 대/소문자로 작성되어야 함 ex) var a; var A;</p>
+      <p>&#8226; 변수의 첫글자는 숫자, 특수문자가 올 수 없음 0ab, &ab 불가능</p>
+      <p>&#8226; 변수명 사이에 스페이스(공백)을 사용할 수 없음</p>
+      <p>&#8226; 자바스크립트에서 사용하는 언어(예약어: 색상이 변하는 단어)는 사용할 수 없음(var, if, break 등)</p>
+      <p>&#8226; 변수명에는 특수기호를 사용 할 수 없음(단, $와 '_'는 사용가능)</p>
+      <p>&#8226; 변수명은 의미를 담을 수 있는 이름으로 지정하고, 일명 낙타봉(카멜)표기법으로 작성할 것을 권장함 imagename > imagesName , 스네이크 표기법(언더바를 사용) imagename > img_name</p>
+    <br>
+      <p>&#8226; + 는 앞 뒤가 숫자일때는 연산 / 문자+숫자, 문자+문자일 때는 결함으로 쓰임</p>
+      <p>&#8226; 문자열 결합연산자 '+' : 문자와 문자를 연결 할 때, 문자와 숫자를 연결 할 때 사용</p>
+      <p>&#8226; 산술연산자 '+' : 숫자와 숫자를 더하여 합산하고자 할 때 사용</p>
+
+  </div>
+  <div class="box">
+    <h3>4. let, const 차이점 확인</h3>
+    <p>&#8226; let : 수시로 변하는 데이터를 저장하기 위한 키워드</p>
+    <p>&#8226; const : 고정된 값을 저장하기 위한 키워드</p>
+    <p>ex) conet on = document.elementById('light_on')에서 값 light_on은 바뀌지 않기 때문에 const 상수를 사용함</p>
+  </div>
+  <div class="box">
+    <h3>5. 실습</h3>
+    <p>name, region 변수를 생성하고 사용자가 이름과 사는 지역을 입력할 수 있도록 하고, 출력한다. </p>
+    <p id="t02"></p>
+  </div>
+
+  <script>
+    //1. 변수 선언
+    let box;
+
+    //2. 변수에 데이터 저장하기 = 입력
+    box = '변수를 사용하여 데이터 출력하기';
+    box ='변수데이터는 마지막에 들어간 데이터만 남는다.<br>';
+
+    //3. 변수 데이터 출력하기
+    document.write('<p class="t01">'+box+'</p>');;
+
+    //4. 변수 선언: 여러개의 변수를 동시에 선언 할 수 있음
+    let a, b;
+
+    //5. 변수에 데이터 값 저장하기
+    a=10;
+    b=100;
+a
+    //6. 데이터 출력하기
+    document.write("변수 a 출력= "+a+'<br>');
+    document.write("변수 b 출력= "+b+'<br>');
+    document.write("변수 a+b 출력= "+a+b);
+
+    //7. name, region 변수를 생성하고 사용자가 이름과 사는 지역을 입력할 수 있도록 하고, 출력한다. 
+    let name, region;
+    
+    name = prompt('사용자의 이름을 입력해주세요.');
+    region = prompt('사는 시역을 입력해주세요.');
+
+    document.getElementById('t02').innerHTML="<b>"+name+"</b>"+"님이 사는 지역은 "+"<b>"+region+"</b>"+"입니다.";
+
+
+  </script>
+</body>
+</html>

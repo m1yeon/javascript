@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS_07_데이터의 유형(data type)</title>
+  <link rel="stylesheet" href="./css/base.css" type="text/css">
+  <style>
+    h2{display: inline-block;padding: 0px 20px; transform: translateY(3px);}
+    /* h3{padding: 0px 0px 0px 0px;} */
+		.box{
+			background: #eee;
+			padding: 20px 20px;
+			border-radius: 20px;
+			margin-bottom: 20px;
+		}
+    .p01{padding-top: 15px;}
+    pre{background: #333; color: #fff; font-size: 14px; padding: 20px; box-sizing: border-box; border-radius: 12px; margin-top: 15px;}
+    .c01{color: aquamarine;}
+  </style>
+
+</head>
+<body>
+  <a href="../index.html" title="메인페이지 바로가기" class="b_btn">
+		<img src="../images/icon_home.png" alt="icon_home">
+	</a>
+  <h2>07_데이터의 유형(data type)</h2>
+  <p class="p01">자바스크립트에서 사용하는 데이터의 유형에 대해 알아본다.  </p>
+  <p>&#8226; 문자데이터형(string)<br>
+  &#8226; 숫자데이터형(number)<br>
+  &#8226; 부울형데이터(boolean) - true/false<br>
+  &#8226; 찾을 수 없는 데이터형(undefined)<br>
+  &#8226; 값이 없는 데이터(null)<br>
+  &#8226; 배열형 데이터(function)<br>
+  &#8226; 객체(object) : document, window, alert, confirm, prompt등...
+  </p>
+  <br>
+  <div class="box">
+    <h3>typeof 연산자</h3>
+    <p>&#8226; :typeof 연산자는 사용자가 입력한 데이터가 어떤 종류의 형식인지를 알려주는 연산자이며,<br>변수앞에 number, string 등을 작성하면 실제 데이터 형식을 알 수 있음</p>
+    <br>
+    <h3>템플릿 리터럴(`)</h3>
+    <p>&#8226; es6 문법에서 새롭게 추가된 기호</p>
+    <p>&#8226; 연산자를 사용하지 않아도 간단한 방법으로 새로운 문자열을 삽입할 수 있는 기능을 말함<br>이를 문자열 이플레이션(string interpolation)이라 함</p>
+  </div>
+
+  <pre>
+    <span class="c01">//1. 원시형 데이터(기본형)</span>
+    let a = 10; <span class="c01">//숫자데이터</span>
+    let b = '10'; <span class="c01">//문자데이터</span>
+    let c =true; <span class="c01">//부울형 데이터(boolean)</span>
+    let nl = null; <span class="c01">//값이 정의되지 않음(undefined), 변수는 필요하지만 값이 아직 결정되지 않았을 때</span>
+    let u;
+
+    document.write(a); <span class="c01">//10</span>
+    document.write(b); <span class="c01">//10</span>
+    document.write('변수 a의 데이터 형식은' + typeof(a)); <span class="c01">//변수 a의 데이터 형식은number</span>
+    document.write('변수 b의 데이터 형식은' + typeof(b)); <span class="c01">//변수 b의 데이터 형식은string</span>
+
+    document.write(c); <span class="c01">//true</span>
+    document.write(nl); <span class="c01">//null</span>
+    document.write('변수 c의 데이터 형식은' + typeof(c) + '입니다.'); <span class="c01">//변수 c의 데이터 형식은boolean</span>
+    document.write('변수 nl의 데이터 형식은' + typeof(nl) + '입니다.'); <span class="c01">//변수 n의 데이터 형식은object</span>
+
+    document.write(u); <span class="c01">//undefined</span>
+    document.write('변수 u의 데이터 형식은' + typeof(u) + '입니다.'); <span class="c01">//변수 u의 데이터 형식은 undefined</span>
+
+    <span class="c01">//2. 참조형데이터 : 여러개의 데이터를 한번에 담을 수 있음</span>
+    let array1 = ['일','월','화','수','목','금','토'];
+    document.write(array1); <span class="c01">//배열 데이터 출력</span>
+    document.write(array1[1]); <span class="c01">배열 데이터에 인덱스번호를 입력해 특정 데이터 출력</span>
+
+    let info=['m1yeon','김미연','서울','00-111-2222','30','여'];
+    document.write('저는 '+info[2]+'에 살고있는 '+info[4]+'살 '+info[1]+'입니다');<span class="c01">//저는 서울에 살고있는 30살 김미연입니다</span>
+
+    <span class="c01">//3. 함수(function)형 데이터_바로 출력되지 않고, 만들어두고 실행시켜야 출력됨</span>
+    function sam(){
+      document.write('함수형 데이터입니다.');
+    }
+    <span class="c01">//함수명으로 호출하기</span>
+    sam();
+
+    <span class="c01">//4. 객체(object)</span>
+    let person = { <span class="c01">//사용자 정의 객체</span>
+      age:21,
+      name:'강감찬',
+      job:'웹퍼블리셔',
+      height:'175'
+    };
+
+    <span class="c01">//객체 내용 출력하기</span>
+    document.write(person.age); <span class="c01">//21</span>
+    document.write(person.name); <span class="c01">//강감찬</span>
+    document.write(person.job); <span class="c01">//웹퍼블리셔</span>
+    document.write(person.height); <span class="c01">//175</span>
+
+    <span class="c01">//제 이름은 강감찬이고, 21살이고, 키는 175, 집업은 웹퍼블리셔입니다. 출력하기</span>
+    document.write(`나의 이름은 ${person.name}이고, 나이는 ${person.age}이며, 키는 ${person.height}, 직업은 ${person.job}입니다`);
+  </pre>
+</body>
+</html>

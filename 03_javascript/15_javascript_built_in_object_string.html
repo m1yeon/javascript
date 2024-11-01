@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS_15_객체(object)_내장객체_문자열(string)객체</title>
+  <link rel="stylesheet" href="./css/base.css">
+  <style>
+    /* 공통서식 */
+    h2{display: inline-block;padding: 0px 20px; transform: translateY(3px);}
+    /* h3{padding: 0px 0px 0px 0px;} */
+    .box{
+      background: #eee;
+      padding: 20px 20px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    .p01{padding-top: 15px;}
+    pre{background: #333; color: #fff; font-size: 14px; padding: 20px; box-sizing: border-box; border-radius: 12px; margin: 15px 0px 20px 0px; width: 100%;}
+    .c01{color: aquamarine;}
+    .c_img{width: 600px; padding-top: 15px;}
+
+    .c02{color: #ff6f9a;}
+  </style>
+</head>
+<body>
+  <a href="../index.html" title="메인페이지 바로가기" class="b_btn">
+    <img src="../images/icon_home.png" alt="icon_home">
+  </a>
+  <h2>15_객체(object)_내장객체_문자열(string)객체</h2>
+  <p class="p01">&#8226; 문자열 객체는 자바스크립트의 내장객체 중에서 활용도가 많은 객체이며,<br> 문자열 값을 인덱스번호를 통해 값을 찾거나 다른 문자로 변경도 가능함</p>
+  <p>&#8226; 응용컨텐츠 : 아이디, 패스워드 입력창 문자열 개수 체크, 단문 메세지 문자열 개수 체크, 패스워드 문자열을 찾아 다른 문자열로 변경, 이미지 갤러리 등 사용 가능</p>
+  <p>&#8226; 문자열 객체는 다른 내장 객체와는 다르게 <b>new 키워드 생략 가능함</b></p>
+  <br>
+  <div class="box">
+    <h3>1. 문자열 객체의 메서드와 속성들</h3>
+    <p>&#8226; <b>replace</b>: 문자 치환하기</p>
+    <p>&#8226; <b>split</b>: 문자열 반환하기</p>
+    <p>&#8226; <b>substring</b>: 인덱스 번호 구간까지 문자 데이터를 찾아줌</p>
+    <p>&#8226; <b>length</b>: 문자열의 개수를 체크해줌</p>
+    <p>&#8226; <b>indexOf</b>: 문자열과 일치하는 인덱스 번호를 반환함</p>
+  </div>
+
+  <pre>
+    <span class="c01">//변수선언</span>
+    let url;
+    let p_number;
+
+    <span class="c01">//데이터 입력하기</span>
+    url = 'http://www.naver.com';
+    p_number = '990101-0123456';
+
+    <span class="c01">//출력하기</span>
+    document.write(`${url}`);  <span class="c02"> 출력 :  http://www.naver.com</span> 
+
+    <span class="c01">//1. replace_문자치환하기</span>
+    url = url.replace('naver.com','daum.net');
+    document.write(` ${url}`); <span class="c02"> 출력 :  http://www.daum.net</span> 
+
+    <span class="c01">//2. split_문자열 분리하기</span>
+    url = url.split('.');
+    document.write(`${url}`); <span class="c02"> 출력 :  http://www,daum,net</span>
+    
+    p_number = p_number.split('-');
+    document.write(`${p_number}`); <span class="c02"> 출력 :  990101,0123456</span>
+
+    <span class="c01">//2-2_분리한 문자열 인덱스 번호로 출력하기</span>
+    document.write(`생년월일 : ${p_number[0]}`); <span class="c02"> 출력 :  생년월일 : 990101</span>
+    document.write(`개인번호 : ${p_number[1]}`); <span class="c02"> 출력 :  개인번호 : 0123456</span>
+
+    <span class="c01">//3. substring_해당 인덱스 번호부터 문자열 표시</span>
+    url = 'http://www.google.co.kr';
+    url = url.substring(11); //10번째 > g부터 출력
+    document.write(`${url}`); <span class="c02"> 출력 :  google.co.kr</span>
+    <span class="c01">//4. length</span>
+    url = url.length;
+    document.write(`url 문자열의 개수는 ${url} 개 입니다.`); <span class="c02"> 출력 :  url 문자열의 개수는 12 개 입니다.</span>
+
+    <span class="c01">//5. indexOf_배열에서 해당하는 문자열이 일치하는 인덱스 </span>번호를 찾아줌
+    let fruit = ['사과','배','딸기','수박','복숭아','포도'];
+    document.write(`${fruit}`); <span class="c02"> 출력 :  사과,배,딸기,수박,복숭아,포도</span>
+    let f = fruit.indexOf('수박');
+    document.write(`수박은 fruit 배열에서 ${f}번째 데이터 입니다.`); <span class="c02"> 출력 :  수박은 fruit 배열에서 3번째 데이터 입니다.</span></pre>
+  <!-- <script>
+    //변수선언
+    let url;
+    let p_number;
+
+    //데이터 입력하기
+    url = 'http://www.naver.com';
+    p_number = '990101-0123456';
+
+    //출력하기
+    document.write(`<p>${url}</p>`);
+
+    //1. replace_문자치환하기
+    url = url.replace('naver.com','daum.net');
+    document.write(`<p> ${url}</p>`);
+
+    //2. split_문자열 분리하기
+    url = url.split('.');
+    document.write(`<p>${url}</p>`)
+    p_number = p_number.split('-');
+    document.write(`<p>${p_number}</p>`);
+
+    //2-2_분리한 문자열 인덱스 번호로 출력하기
+    document.write(`<p>생년월일 : ${p_number[0]}</p>`);
+    document.write(`<p>개인번호 : ${p_number[1]}</p>`);
+
+    //3. substring_해당 인덱스 번호부터 문자열 표시
+    url = 'http://www.google.co.kr';
+    url = url.substring(11); //10번째 > g부터 출력
+    document.write(`<p>${url}</p>`);
+
+    //4. length
+    url = url.length;
+    document.write(`<p>url 문자열의 개수는 ${url} 개 입니다.</p>`);
+
+    //5. indexOf_배열에서 해당하는 문자열이 일치하는 인덱스 번호를 찾아줌
+    let fruit = ['사과','배','딸기','수박','복숭아','포도'];
+    document.write(`<p>${fruit}</p>`);
+    let f = fruit.indexOf('수박');
+    document.write(`<p>수박은 fruit 배열에서 ${f}번째 데이터 입니다.</p>`);
+  </script> -->
+
+
+
+</body>
+</html>

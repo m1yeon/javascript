@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/base.css" type="text/css">
+  <title>JS_08_제어문(control)</title>
+  <style>
+    h2{display: inline-block;padding: 0px 20px; transform: translateY(3px);}
+    /* h3{padding: 0px 0px 0px 0px;} */
+		.box{
+			background: #eee;
+			padding: 20px 20px;
+			border-radius: 20px;
+			margin-bottom: 20px;
+		}
+    .p01{padding-top: 15px;}
+    pre{background: #333; color: #fff; font-size: 14px; padding: 20px; box-sizing: border-box; border-radius: 12px; margin: 15px 0px 20px 0px; width: 100%;}
+    .c01{color: aquamarine;}
+
+    .txt01{color: #fff; background: #333; padding: 4px 12px; border-radius: 15px; margin-left: 5px; }
+    .txt02{font-weight: bold; color: #c00; font-size: 18px;}
+
+
+    h4{background-color: #33333386; color: #fff; padding: 6px 18px; border-radius: 20px; display: inline-block;}
+    h4 > a{text-decoration: none; color: #fff;}
+/* 
+    .modal{position: fixed; width: 500px; height: 500px; z-index: 1000; border: 1px solid #f00;} */
+    .modal_wrap{
+      position: fixed;
+      width: 100%; height: 100%;
+      top: 0; left: 0;
+      background: rgba(7,7,7,.25);
+      transition: 0.4s;
+      display: none;
+    }
+    .modal{
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      display: inline-block;
+      z-index: 1000;
+      width: 700px; height: fit-content;
+      background: #fff;
+      border: 1px solid #333;
+      border-radius: 15px;
+      padding: 20px;
+      font-size: 15px;
+    }
+    .modal > img{width: 100%; padding-top: 10px;}
+    .modal > .c_btn{
+      position: absolute;
+      top: 20px; right: 25px;
+      text-decoration: none;
+      display: block;
+    }
+  </style>
+
+</head>
+<body>
+  <a href="../index.html" title="메인페이지 바로가기" class="b_btn">
+		<img src="../images/icon_home.png" alt="icon_home">
+	</a>
+  <h2>08_제어문(control)</h2>
+  <p class="p01">제어문이란? 프로그램의 실행을 제어(control)하기 위해 사용하는 실행문으로<br>
+    1. 조건문(if, else, if else)<br>
+    2. 선택문(switch case)<br>
+    3. 반복문(while, do while, for)이 있다.</p>
+    <br>
+    <!-- 1. 조건문 -->
+    <div class="box">
+      <h3>1. 조건문_if, else, if else</h3>
+      <p>&#8226; <b>if</b> : 조건식이 만족 할 때만 실행되는 조건문</p>
+      <p>&#8226; <b>else</b> : 조건식이 만족하면 true, 만족하지 않으면 false가 나오도록 하는 조건문</p>
+      <p>&#8226; <b>else if</b> : 조건식이 여러개일 경우 다양한 결과값을 얻기 위한 조건문</p>
+      <pre>
+        <span class="c01">// if문 _ 조건식을 만족(true)할 경우에만 코드 실행</span>
+        if(조건식) {
+          자바스크립트 코드;
+        }
+
+        <span class="c01">// else문 _ 조건식을 만족할 경우 vs 만족하지 않을 경우에 따라 실행되는 코드가 달라짐(즉, 2가지 결과가 나올 수 있음)</span>
+        if(조건식) {
+          조건식을 만족할 경우 실행할 코드1;
+        } else {
+          조건식을 만족하지 못한 경우 실행할 코드2;
+        }
+
+        <span class="c01">// else if문 _ 두 가지 이상 조건식과 정해놓은 조건을 만족하지 않았을 때 실행되는 코드로 이루어짐</span>
+        if(조건식1) {
+          실행할 코드1;
+        } else if(조건식2) {
+          실행할 코드2;
+        } else if(조건식3) {
+          실행할 코드3;
+        } else {
+          실행할 코드n;
+        }
+        <span class="c01">// 만족하는 값이 if ~ else if문에 없으면 else 조건식을 실행. 중간에 만족하는 값이 있다면 실행 후 종료</span>
+      </pre>
+      <br>
+      <h4>조건문 실습하기</h4>
+      <p>----경품 추첨-----<br>
+        등수별 상품 출력 : <br>
+        1. 숫자 1 or 1등 : "당첨!해외여행상품권"<br>
+        2. 숫자 2 or 2등 : "냉장고"<br>
+        3. 숫자 3 or 3등 : "상품권"<br>
+        4. 숫자 4 or 4등 : "꽝입니다!"</p>
+        <p>경품 추첨 결과 <span id="eve"></span></p>
+
+        <pre>
+          let eve = prompt('등수를 입력하세요 예: 1 or 1등');
+          
+          if((eve == 1) || (eve =='1등')){ <span class="c01">//만약 eve가 1 또는 1등 이라면</span>
+            document.getElementById('eve').innerHTML='span class="txt01" 당첨!해외여행상품권 /span';
+          }else if((eve == 2) || (eve =='2등')){ <span class="c01">//만약 eve가 2 또는 2등 이라면</span>
+            document.getElementById('eve').innerHTML='냉장고';
+          }else if((eve == 3) || (eve =='3등')){ <span class="c01">//만약 eve가 3 또는 3등 이라면</span>
+            document.getElementById('eve').innerHTML='상품권';
+          }else{ <span class="c01">//그 외라면</span>
+            document.getElementById('eve').innerHTML='꽝입니다';
+          }
+                  </pre>
+
+        <!-- <div class="con"> 조건문 if/else/if else 실습 
+          <p id="t01"></p>
+          <p id="t02"></p>
+          <p id="t03"></p>
+          <pre>
+    //변수선언
+    let a =10;
+    let b =20;
+          
+    <span class="c01">//1.if문</span>
+    if(a==10){// a변수값과 10이 같은지
+      document.getElementById('t01').innerHTML='위 수식은 참입니다';
+    }
+          
+    <span class="c01">//2.else</span>
+    if(b==10){// a변수값과 10이 같은지
+      document.getElementById('t02').innerHTML='위 수식은 참 입니다';
+    }else{
+      document.getElementById('t02').innerHTML='위 수식은 거짓 입니다';
+    }
+          
+    <span class="c01">// 사용자가 입력한 숫자를 통해 짝수/홀수 판단하는 수식 만들기</span>
+    let number = prompt('숫자를 입력하세요.');
+    if(number%2==0){
+      document.getElementById('t03').innerHTML='입력하신 숫자는 짝수 입니다';
+    }else{
+      document.getElementById('t03').innerHTML='입력하신 숫자는 홀수 입니다';
+    }
+          </pre>
+        </div> -->
+    </div>
+
+    <!-- 2. 선택문(switch문) -->
+    <div class="box">
+      <h3>2. 선택문_switch case</h3>
+      <p>&#8226; 선택문(switch case)은 변수와 일치하는 값이 있을 때 해당 코드를 실행함</p>
+      <p>&#8226; 변수에 저장된 값과 선택문(switch문)에 있는 경우(case)의 값을 검사하여 변수와 경우의 값에서 일치하는 값이 있을 때 그에 해당하는 코드를 실행<br>여러 경우의 값 중 일치하는 데이터를 찾아 해당하는 코드를 실행시킬 때 사용함</p>
+      <p>&#8226; break문 : 조건식에서 원하는 값이 일치할 때 프로그램이 현 위치에서 멈추게 하기 위한 명령어</p>
+      <pre>
+    var 변수 = 초기값;
+
+    switch(변수) {
+      case 값1 : 코드1(실행할 내용1);
+      break;
+
+      case 값2 : 코드2(실행할 내용2);
+      break;
+
+      default : 코드n(실행할 내용n)
+    }
+
+    <span class="c01">// 변수에 저장된 값은 switch문을 만나면 case값 하나씩 검사. 
+      > 그 후 일치하는 데이터가 있으면 해당 코드를 실행
+      > break문 만나 switch문 종료.
+      > 경우의 값 중 일치하는 데이터 없으면 마지막 default에 있는 코드 실행 후 switch문 종료</span>
+      </pre>
+      <br>
+      <h4>선택문(switch문) 실습하기 _ 현재 날짜정보를 통해 요일표시하기</h4>
+      <p>&#8226; 시간객체(date)를 활용하여 요일 번호를 구하고 switch case문을 통해 한글명 '요일' 출력하기</p>
+      <script>
+        // 2. 선택문 실습하기
+        let today = new Date();  //날짜 객체 생성
+        document.write('<p><b>현재시스템 날짜 + 시간정보</b> : '+today + '<br></p>');   // 현재 시스템 시간+날짜 정보 출력
+
+        document.write('<p>'+today.getDay()+'</p>');
+  
+        let res2 = today.getDay(); // 요일 번호를 변수에 저장
+  
+        document.write('<p><b>');
+        switch (res2) {
+          case 0 : document.write('오늘은 일요일');break;
+          case 1 : document.write('오늘은 월요일');break;
+          case 2 : document.write('오늘은 화요일');break;
+          case 3 : document.write('오늘은 수요일');break;
+          case 4 : document.write('오늘은 목요일');break;
+          case 5 : document.write('오늘은 금요일 :)');break;
+          default: document. write('오늘은 토요일. :)') 
+        }
+        document.write('</b> 입니다.</p>');
+      </script>
+      <pre>
+        let today = new Date();  <span class="c01">//날짜 객체 생성</span>
+        document.write('현재시스템 날짜 + 시간정보 : '+today );   <span class="c01">// 현재 시스템 시간+날짜 정보 출력</span>
+
+        document.write(+today.getDay()); <span class="c01">//getDay()메서드는 주어진 날짜의 현지 시간 기준 요일을 반환해줌 (일요일(0)~토요일(6))</span>
+  
+        let res2 = today.getDay(); <span class="c01">// 요일 번호를 변수에 저장</span>
+  
+        switch (res2) {
+          case 0 : document.write('오늘은 일요일');break; <span class="c01">//변수 res2가 0이면 오늘은 일요일 출력</span>
+          case 1 : document.write('오늘은 월요일');break; 
+          case 2 : document.write('오늘은 화요일');break;
+          case 3 : document.write('오늘은 수요일');break;
+          case 4 : document.write('오늘은 목요일');break;
+          case 5 : document.write('오늘은 금요일 :)');break;
+          default: document. write('오늘은 토요일. :)') 
+        }
+      </pre>
+    </div>
+    <!-- 3. 반복문 -->
+    <div class="box">
+      <h3>3. 반복문_while, do while, for</h3>
+      <p>&#8226; 반복문은 작업을 반복 수행 할 때 사용함</p>
+      <p>&#8226; 주의할 점 ) 조건을 잘못 설정하면 무한 루프에 빠지는 오류가 생기며, 브라우저에 화면 멈춤현상이 발생함</p>
+      <p>&#8226; <b>while</b> : 조건식을 만족할 때까지 코드를 실행 (주의할 점 : 증감식으로 반복을 제어하므로 무한 반복을 주의해야 함)<br>
+        &#8226; <b>do while</b> : 만족 여부를 먼저 검사 한 후, 코드 실행 여부를 결정 (do whilte문은 반드시 첫 번째부터 코드를 실행하고 조건식을 검사함)<br>
+        &#8226; <b>for</b> : 조건식을 만족할 때까지 특정 코드를 반복하여 실행함</p>
+        <p>&#8226; <b>break 문</b> : 반복문 실행 도중 break문을 실행하면 조건식과 상관없이 강제로 반복문을 종료함<br>
+        &#8226; <b>continue 문</b> : 반복문에서만 사용할 수 있으면 continue문을 실행하면 다음에 오는 코드는 무시하고 바로 증감식으로 이동하고 조건식을 조건 검사함</p>
+        <pre>
+          <span class="c01">// while 문</span>
+          while (조건식) {   
+            실행할 코드;        
+            증감식;                 
+          }
+
+          <span class="c01">// do while 문</span>
+          do {
+            실행할 코드;
+            증감식;
+          } while (조건식)
+
+          <span class="c01">// for 문</span>
+          for (초기값; 조건식; 증감식) {
+            실행할 코드;
+          }
+        </pre>
+        <br>
+        <h4>반복문 실습 _ 반복문을 사용하여 숫자 1~10 출력하기</h4>
+        <br>
+        <script>
+          //1. while문
+          let n = 1; //초기값 변수 선언
+      
+          document.write('<p>while : ');
+          while(n<=10){ //조건에 만족 할 때까지 반복 (n이 10이 될 때 까지 반복)
+            document.write(n +'&nbsp'); // 내용 출력
+            n++; //기존값에 1씩 더해서 출력
+          }
+      
+            document.write('</p><p>do while : ');
+      
+            //2. do while문
+            let n1 = 1;
+            do{
+              document.write(n1 +'&nbsp');
+              n1++;
+            }while(n1<=10);
+      
+            document.write('</p><p>for  : ');
+      
+          //3. for문
+          for(let n2=1; n2<=10;n2++){
+            document.write(n2+'&nbsp')
+          }
+          document.write('</p>');
+        </script>
+        <pre>
+          <span class="c01">//1. while문</span>
+          let n = 1; <span class="c01">//초기값 변수 선언</span>
+      
+          while(n=10){                        <span class="c01">//조건에 만족 할 때까지 반복 (n이 10이 될 때 까지 반복)</span>
+            document.write(n +'&nbsp'); <span class="c01">   // 내용 출력</span>
+            n++;                                   <span class="c01">//기존값에 1씩 증가</span>
+          }
+      
+         <span class="c01"> //2. do while문</span>
+          let n1 = 1;
+          do{
+            document.write(n1 +'&nbsp');
+            n1++;
+          }while(n1=10);
+      
+          <span class="c01">// 3. for문</span>
+          for(let n2=1; n2=10;n2++){
+            document.write(n2+'&nbsp')
+          }
+        </pre>
+        <h4><a href="javascript:void(0)" id="exe2" class="btn-open">실습2 _ 반복문을 사용해 구구단 출력하기</a></h4>&nbsp;&nbsp;
+        <h4><a href="javascript:void(0)" id="exe3">실습3_반복문을 활용하여 달력 출력하기</a></h4>
+    </div>
+
+    <div class="modal_wrap m1">
+      <div class="modal">
+        <h3>실습2 _ 반복문을 사용해 구구단 출력하기</h3><br>
+        <script>
+            for(let a=2;a<=9;a++){
+              document.write('<b>'+a+'단</b> &nbsp;');
+              for(let b=1;b<=9;b++){
+                document.write(a+'x'+b+'='+a*b+'&nbsp;/&nbsp;');
+              }
+              document.write('<br>')
+            }
+        </script>
+        <img src="./images/while_ex2.JPG" alt="반복문 실습2 코드">
+        <a href="javascript:void(0)" title="닫기" class="c_btn" id="btn1">닫기</a>
+      </div>
+    </div>
+
+    <div class="modal_wrap m2">
+      <div class="modal">
+        <h3>실습3 _ 반복문을 활용해 달력 출력하기</h3><br>
+        <script>
+          document.write('<table>');
+          document.write('<caption>요일</caption>');
+
+          document.write('<tr><th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th></tr>');
+
+          //조건문 활용하여 31일 초과 35까지 공백으로 표시하기
+          for(let day=1;day<=35;day++){
+            if (day%7==1){
+              document.write('<tr>');
+                document.write('<td>'+day+'</td>');
+                continue;
+            }
+            if(31<day&&day<=35){
+              document.write('<td>&nbsp;</td>');
+              continue;
+            }
+            if(day%7==0){
+              document.write('<td>'+day+'</td>');
+              document.write('</tr>')
+              continue;
+            }
+            document.write('<td>'+day+'</td>');
+          }
+          document.write('</table>');
+        </script>
+        <img src="./images/while_ex3.JPG" alt="반복문 실습2 코드">
+        <a href="javascript:void(0)" title="닫기" class="c_btn" id="btn2">닫기</a>
+      </div>
+    </div>
+  
+  <script>
+    // //변수선언
+    // let a =10;
+    // let b =20;
+
+    // //1.if문
+    // if(a==10){// a변수값과 10이 같은지
+    //   document.getElementById('t01').innerHTML='위 수식은<b>참</b>입니다';
+    // }
+
+    // //2.else
+    // if(b==10){// a변수값과 10이 같은지
+    //   document.getElementById('t02').innerHTML='위 수식은<b>참</b>입니다';
+    // }else{
+    //   document.getElementById('t02').innerHTML='위 수식은<b>거짓</b>입니다';
+    // }
+
+    // // 사용자가 입력한 숫자를 통해 짝수/홀수 판단하는 수식 만들기
+    // let number = prompt('숫자를 입력하세요.');
+    // if(number%2==0){
+    //   document.getElementById('t03').innerHTML='입력하신 숫자는<b>짝수</b>입니다';
+    // }else{
+    //   document.getElementById('t03').innerHTML='입력하신 숫자는<b>홀수</b>입니다';
+    // }
+
+    //3. else if
+      //   let eve = prompt('등수를 입력하세요 예: 1 or 1등');
+      // if((eve == 1) || (eve =='1등')){
+      //   document.getElementById('eve').innerHTML='<span class="txt01">당첨!해외여행상품권</span>';
+      // }else if((eve == 2) || (eve =='2등')){
+      //   document.getElementById('eve').innerHTML='<span class="txt01">냉장고</span>';
+      // }else if((eve == 3) || (eve =='3등')){
+      //   document.getElementById('eve').innerHTML='<span class="txt01">상품권</span>';
+      // }else{
+      //   document.getElementById('eve').innerHTML='<span class="txt01">꽝입니다</span>';
+      // }
+      let ex2 = document.getElementById('exe2');
+      let ex3 = document.getElementById('exe3');
+      let m1 = document.getElementsByClassName('m1')[0];
+      let m2 = document.getElementsByClassName('m2')[0];
+      let btn1 = document.querySelector('#btn1');
+      let btn2 = document.querySelector('#btn2');
+
+      ex2.addEventListener('click',function(){
+        m1.style.display='block';
+      });
+
+      ex3.addEventListener('click',function(){
+        m2.style.display='block';
+      });
+
+      btn1.addEventListener('click',function(){
+        m1.style.display='none';
+      });
+
+      btn2.addEventListener('click',function(){
+        m2.style.display='none';
+      });
+  </script>
+</body>
+</html>

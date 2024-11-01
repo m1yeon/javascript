@@ -1,0 +1,246 @@
+<!doctype html>
+<html lnag="ko">
+  <head>
+    <meta charset="utf-8">
+    <title>JS_실습예제04_내장객체를 활용한 슬라이드 구현</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" type="text/css">
+    <link rel="stylesheet" href="./css/base.css" type="text/css">
+    <style>
+      .wrap{width: 1200px; margin: 0 auto;}
+      h2{display: inline-block;padding: 0px 20px; transform: translateY(3px); }
+      h3{padding: 0px 0px 10px 0px; text-align: left;}
+      .box > p{text-align: left;}
+      .box{
+        background: #eee;
+        padding: 20px 20px;
+        border-radius: 20px;
+        margin-bottom: 20px;
+      }
+      .p01{padding-top: 15px;}
+      .t01{font-size: 15px; color: #777;}
+      pre{background: #333; color: #fff; font-size: 14px; padding: 20px; box-sizing: border-box; border-radius: 15px;}
+      .c01{color: aquamarine;}
+
+      /* 실습1 */
+      .p_wrap{display: flex; padding-top: 20px;}
+      .p_wrap pre{width: calc(100% - 430px);}
+      #coup *{margin: 0px; padding: 0px;}
+      #coup{
+        background: #fff;
+        width: 400px; height: fit-content;
+        margin-right: 30px;
+        border: 1px solid #efefef;
+        text-align: center;
+        border-radius: 15px;
+        overflow: hidden;
+      }
+      #coup > h3{
+        font-size: 14px;
+        padding-top: 20px;
+        color: #ff6893;
+        text-align: center;
+      }
+      #coup > p{font-size: 22px; padding: 0px 0px 20px 0px;}
+      .img_wrap{position: relative;}
+      #coup >.img_wrap> img{width: 100%; vertical-align: top;}
+      #left_btn,#right_btn{
+        position: absolute;
+        top: 50%; transform: translateY(-50%);
+        font-size: 22px;
+        color: #fff;
+        z-index: 999px;
+        background: rgba(255,255,255,.5);
+        padding: 7px 10px;
+      }
+      #left_btn{left: 0px;}
+      #right_btn{right: 0px;}
+
+      /* 실습2 */
+      .t_wrap{display: flex; padding-top: 20px;}
+      .t_wrap pre{width: calc(100% - 615px);}
+      #tab_con{width: 585px; border: 1px solid #777; margin-right: 30px; overflow: hidden; height: fit-content;}
+      #tab_con > ul{display: flex; width: 585px;}
+      #tab_con > ul > li{width: 25%;}
+      #tab_con > ul > li img{width: 100%; filter: grayscale(1); transition: 0.4s;}
+      #tab_con > ul > li:hover img{filter: grayscale(0);}
+      #photo{width: 100%;}
+      #tab_con img{vertical-align: top;}
+    </style>
+  </head>
+
+  <body>
+    <div class="wrap">
+      <a href="../index.html" title="메인페이지 바로가기" class="b_btn">
+        <img src="../images/icon_home.png" alt="icon_home">
+      </a>
+      <h2>실습예제04_내장객체를 랜덤 슬라이드 구현</h2>
+      <br> <br>
+      <!-- 1. 수학객체 -->
+      <div class="box">
+        <h3>1. 수학객체를 사용한 슬라이드</h3>
+        <p>&#8226; 새로고침 시 이미지 랜덤 변경, 좌/우 버튼 클릭시 이미지 변경되는 슬라이드 구현하기</p>
+        <div class="p_wrap">
+          <div id="coup">
+            <h3>SPRING</h3>
+            <p>봄 한 송이</p>
+            <div class="img_wrap">
+              <img src="./images/math_banner01.jpg" alt="상품이미지" id="coup_img">
+              <!-- 좌/우 버튼 -->
+              <i class="fa solid fa-angle-left" id="left_btn"></i>
+              <i class="fa solid  fa-chevron-right" id="right_btn"></i>
+            </div>
+          </div>
+          <pre>
+    <span class="c01">//1. 상품 이미지 배열 만들기</span>
+    let coupP = ['banner01.jpg','banner02.jpg','banner03.jpg','banner04.jpg','banner05.
+    jpg'];
+
+    <span class="c01">//2. 변수생성</span>
+    const lbtn = document.getElementById('left_btn');
+    const rbtn = document.getElementById('right_btn');
+    let n = 0;
+
+    <span class="c01">//3. 좌/우 버튼 클릭 이벤트 생성</span>
+    lbtn.addEventListener('click',function(){
+      // window.alert('left click test');
+      if(n==0){
+        n=7;
+      }else{
+        n--;
+      }
+      document.getElementById('coup_img').src='./images/math_'+coupP[n];
+    });
+
+    rbtn.addEventListener('click', function(){
+      <span class="c01">// window.alert('right click test');</span>
+      if(n==7){
+        n=0;
+      }else{
+        n++;
+      }
+      document.getElementById('coup_img').src=`./images/math_${coupP[n]}`
+    });
+
+    <span class="c01">//4. 새로 고침 시 랜덤 번호로 이미지 주소 변경</span>
+    <span class="c01">//4-1. 0~9 까지의 랜덤 번호 생성</span>
+    let ranN = Math.floor(Math.random()*8);
+    document.write(ranN);
+
+    <span class="c01">//4-2. 랜덤 번호를 사용해 이미지 주소 변경</span>
+    document.getElementById('coup_img').src=`./images/math_${coupP[ranN]}`;</pre>
+        </div>
+      </div>
+      <!-- 2. 문자열 객체 -->
+      <div class="box">
+        <h3>2. 문자열 객체를 사용한 슬라이드</h3>
+        <p>&#8226; 이미지 5장을 사용하여 섬네일 이미지 클릭시 해당 이미지가 나오도록 구현한다.</p>
+        <p>&#8226; 섬네일 이미지 클릭 시 함수를 활용하여 이미지 src 속성 값을 찾아 변수에 저장하고<br>메인 이미지 태그의 src 속성 값에 대입하여 이미지가 변겨오디도록 한다.</p>
+
+        <div class="t_wrap">
+          <div id="tab_con">
+            <ul>
+              <li><a href="javascript:void(0)" title="탭콘텐츠1">
+                <img src="images/1222_good_banner1.jpg" alt="콘텐츠1" class="small">
+              </a></li>
+              <li><a href="javascript:void(0)" title="탭콘텐츠2">
+                <img src="images/1222_good_banner2.jpg" alt="콘텐츠2" class="small">
+              </a></li>
+              <li><a href="javascript:void(0)" title="탭콘텐츠3">
+                <img src="images/1222_good_banner3.jpg" alt="콘텐츠3" class="small">
+              </a></li>
+              <li><a href="javascript:void(0)" title="탭콘텐츠4">
+                <img src="images/1222_good_banner4.jpg" alt="콘텐츠4" class="small">
+              </a></li>
+            </ul>
+            <img src="./images/1222_good_banner1.jpg" alt="메인이미지" id="photo">
+          </div>
+          <pre>
+            <span class="c01">// 2. 문자열 객체</span>
+            <span class="c01">// 1. 변수 선언</span>
+            let s_img = document.querySelectorAll('.small'); <span class="c01">//작은 이미지</span>
+            let b_img = document.getElementById('photo'); <span class="c01">//큰 이미지</span>
+            let a = 0;
+      
+            <span class="c01">// 2. 섬네일 이미지 클릭시 해당 src 주소값을 변수에 담기</span>
+            for(let a=0; a&#5176;=s_img.length; a++){
+              console.log(s_img[1]); <span class="c01">//이미지 태그 출력 확인_5개인지</span>
+              s_img[a].addEventListener('click',change_img);
+            }
+      
+            <span class="c01">//change_img 함수 </span>
+            function change_img(){
+              let imgUrl = this.src;
+      
+              <span class="c01">//큰사진의 src 주소값에 위 변수값 대입하여 이미지 변경하도록 함</span>
+              b_img.src = b_img.src.replace(b_img.src, imgUrl);
+            }
+          </pre>
+        </div>
+
+      </div>
+    </div>
+
+
+    <script>
+      //1. 수학 객체
+      //1. 상품 이미지 배열 만들기
+      let coupP = ['banner01.jpg','banner02.jpg','banner03.jpg','banner04.jpg','banner05.jpg'];
+
+      //2. 변수생성
+      const lbtn = document.getElementById('left_btn');
+      const rbtn = document.getElementById('right_btn');
+      let n = 0;
+
+      //3. 좌/우 버튼 클릭 이벤트 생성
+      lbtn.addEventListener('click',function(){
+        // window.alert('left click test');
+        if(n==0){
+          n=4;
+        }else{
+          n--;
+        }
+        document.getElementById('coup_img').src='./images/math_'+coupP[n];
+      });
+
+      rbtn.addEventListener('click', function(){
+        // window.alert('right click test');
+        if(n==4){
+          n=0;
+        }else{
+          n++;
+        }
+        document.getElementById('coup_img').src=`./images/math_${coupP[n]}`
+      });
+
+      //4. 새로 고침 시 랜덤 번호로 이미지 주소 변경
+      //4-1. 0~6 까지의 랜덤 번호 생성
+      let ranN = Math.floor(Math.random()*5);
+      // document.write(ranN);
+
+      //4-2. 랜덤 번호를 사용해 이미지 주소 변경
+      document.getElementById('coup_img').src=`./images/math_${coupP[ranN]}`;
+
+
+      // 2. 문자열 객체
+      // 1. 변수 선언
+      let s_img = document.querySelectorAll('.small'); //작은 이미지
+      let b_img = document.getElementById('photo'); //큰 이미지
+      let a = 0;
+
+      // 2. 섬네일 이미지 클릭시 해당 src 주소값을 변수에 담기
+      for(let a=0; a<=s_img.length; a++){
+        console.log(s_img[1]); //이미지 태그 출력 확인_5개인지
+        s_img[a].addEventListener('click',change_img);
+      }
+
+      //change_img 함수 
+      function change_img(){
+        let imgUrl = this.src;
+
+        //큰사진의 src 주소값에 위 변수값 대입하여 이미지 변경하도록 함
+        b_img.src = b_img.src.replace(b_img.src, imgUrl);
+      }
+    </script>
+  </body>
+</html>

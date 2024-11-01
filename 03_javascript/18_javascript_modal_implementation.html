@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS_18_자바스크립트 모달 레이어</title>
+  <link rel="stylesheet" href="./css/base.css">
+  <style>
+    /* 공통서식 */
+    h2{display: inline-block;padding: 0px 20px; transform: translateY(3px);}
+    /* h3{padding: 0px 0px 0px 0px;} */
+    .box{
+      background: #eee;
+      padding: 20px 20px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    } 
+    .p01{padding-top: 15px;}
+    pre{background: #333; color: #fff; font-size: 14px; padding: 20px; box-sizing: border-box; border-radius: 12px; margin: 15px 0px 20px 0px; width: 100%;}
+    .c01{color: aquamarine;}
+    .c_img{width: 600px; padding-top: 15px;}
+    .img_box{width: 90%; margin:0px auto;}
+    /*  */
+    /* .btnP, .btn{padding-top: 10px;}
+    .btnP > input, .btn{padding: 2px 4px;} */
+    #open_btn{font-size: 18px; font-weight: 600; padding: 6px 18px; margin-top: 10px;}
+    
+    .popup_wrap{ 
+      display: none;
+      background-color:rgba(0,0,0,.35); position: fixed; width: 100%; height: 100%; left: 0px; top: 0px; transition: 0.4s;}
+    .popup{
+      overflow: hidden;
+      border-radius: 15px;
+      width: 380px; height: 420px;
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+    }
+    .popup input[type=button]{
+      border: none;
+      display: block;
+      background: #222;
+      color: #fff;
+      line-height: 35px;
+      width: 380px;
+      text-align: right;
+      padding-right: 15px;
+    }
+    .popup img{width: 100%; vertical-align: top;}
+  </style>
+</head>
+<body>
+  <a href="../index.html" title="메인페이지 바로가기" class="b_btn">
+    <img src="../images/icon_home.png" alt="icon_home">
+  </a>
+  <h2>18_자바스크립트 모달 레이어</h2>
+  <br><br>
+  <div class="box">
+    <p>&#8226; <b>모달윈도(modal window)</b>는 사용자 인터페이스(UI) 디자인 개념에서<br>자식 윈도에서 부모 윈도우로 돌아가기 전에 사용자의 상호동작을 요구하는 창을 말한다.</p>
+    <p>&#8226; 모달창은 팝업과 비슷하게 정보를 전달하나 팝업과 다르게 별도의 창이나 탭을 생성하지 않고 페이지 내에서 레이어를 이용해 정보를 보여준다는 점이 차이점이라고 할 수 있음</p>
+    <p>&#8226; 모달 창은 기본적으로 다음 이벤트를 가진다. _ 특정 버튼을 누르면 모달창이 켜진다.</p>
+    <p>&#8226; 모달 윈도우는 부모창을 배경으로 어둡게 하고 자식요소가 화면의 가운데 중아에 배치하도록 하며, <br>오른쪽 상단에 '닫기' 버튼을 만들어서 닫을 수 있도록 한다.</p>
+    <input type="button" value="팝업 레이어 띄우기" id="open_btn" class="btn"><br>
+    <img src="./images/17_window_code2.JPG" alt="code" class="c_img">
+  </div>
+  <article class="popup_wrap">
+    <div class="popup">
+      <img src="images/NEWS BANNER.jpg" alt="광고배너">
+      <input type="button" value="닫기 X" id="close_btn">
+    </div>
+  </article>
+  
+  <script>
+        // 실습예제_버튼 클릭시 팝업 배치
+        let modal = document.querySelector('.popup_wrap');
+    let o_btn = document.getElementById('open_btn');
+    let c_btn = document.getElementById('close_btn');
+
+    o_btn.addEventListener('click',function(){
+      modal.style.display = 'block';
+    });
+
+    c_btn.addEventListener('click',function(){
+      modal.style.opacity='0';
+      setTimeout(displayN, 1000);
+      });
+      function displayN(){
+        modal.style.display = 'none';
+      }
+  </script>
+</body>
+</html>

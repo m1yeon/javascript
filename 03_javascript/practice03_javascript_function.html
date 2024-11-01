@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/base.css" type="text/css">
+  <title>JS_실습예제03_자바스크립트 함수 실습예제</title>
+  <style>
+    .wrap{width: 1200px; margin: 0 auto;}
+    h2{display: inline-block;padding: 0px 20px; transform: translateY(3px);}
+    h3{padding: 0px 0px 10px 0px;}
+		.box{
+			background: #eee;
+			padding: 20px 20px;
+			border-radius: 20px;
+			margin-bottom: 20px;
+		}
+    .p01{padding-top: 15px;}
+		.t01{font-size: 15px; color: #777;}
+    pre{background: #333; color: #fff; font-size: 14px; padding: 20px; box-sizing: border-box; border-radius: 15px;}
+    .c01{color: aquamarine;}
+    .p02::after{
+      content: "";
+      display: inline-block;
+      width: 100%; height: 1px;
+      border-bottom: 1px solid #999;
+    }
+    /* 1 */
+    #cal_btn{padding: 2px 4px;}
+    .bc{color: #fff;}
+    .blueC{background: blue;}
+    .greenC{background: green;}
+    .orangeC{background: orange;}
+    .purpleC{background: purple;}
+    .redC{background: red;}
+
+    /* 2 */
+    .calculator{
+      border: 1px solid #ccc;
+      border-radius: 29px;
+      width: 270px;
+      text-align: center;
+      margin:0 auto;
+      background: #000;
+      padding: 120px 0px 5px 5px;
+      position: relative;
+    }
+
+    .calculator ul{
+      display: grid;
+      grid-gap: 10px;
+      grid-template-columns:repeat(4,50px);
+      grid-template-rows:repeat(6,50px);
+      text-align: center;
+      padding: 20px;
+    }
+
+    .calculator ul > li:first-child{grid-area: 1/1/2/5;}
+    .calculator ul > li:first-child > input{
+      width: 225px; height: 44px;
+      background: #000;
+      border: none;
+      color: #fff;
+      font-size: 45px;
+      text-align: right;
+    }
+
+    .calculator ul > li:nth-child(2){grid-area:2/1/3/3;}
+    .calculator ul > li:nth-child(17){grid-area:6/1/7/-3;}
+    .calculator ul > li:nth-child(2)>input, ul > li:nth-child(17) > input{width: 110px; border-radius: 25px;}
+    .calculator ul > li > input:not(#result,.nth2){width: 50px; border-radius: 50%;}
+
+    .calculator ul > li > input{
+      height: 50px;
+      border: 1px solid #ccc;
+      font-size: 20px;
+      border: none;
+      background: #333;
+      color: #fff;
+    }
+    .calculator ul > li:nth-child(2) > input{background:#a5a5a5; color: #222; transition: 0.5s;}
+    .calculator .in01{background:#d9411d ;color: #fff;transition: 0.5s;}
+    .calculator ul>li>input:focus{background: #797979;}
+    .calculator ul>li:nth-child(2) > input:focus{background: #d9d9d9;}
+    .in01:focus{background:#fff8ee; color: #FE9601;}
+    .time,.bat{color: #fff; font-size: 11px; position: absolute; top: 15px;}
+    .time{left: 17px;}
+    .bat{right: 17px;}
+    .bottom_bar{
+      position: absolute; bottom: 10px;
+      left: 90px;
+      border-radius: 20px;
+      background: #eee;
+      font-size: 2.5px;
+      width: 100px;
+      text-indent: -999999;
+    }
+    /* 3 */
+    #res_btn{padding: 2px 4px;}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a href="../index.html" title="메인페이지 바로가기" class="b_btn">
+      <img src="../images/icon_home.png" alt="icon_home">
+    </a>
+    <h2>실습예제03_자바스크립트 함수 실습예제</h2>
+    <br><br>
+    <div class="box">
+      <h3>1. 자신의 신장, 몸무게를 입력해 BMI 지수 구하기</h3>
+      <p>1. 신장(m)과 체중(kg)을 입력하기 위한 input태그 요소 사용<br>
+      2. 함수를 작성하여 신장, 체중값을 사용하여 계산식 작성하기<br>
+      3. 연산된 결과값을 통해 적정체중인지를 비교(if문 사용)하여 결과를 출력</p>
+      <p>BMI = 체중(kg) / (신장(m) X 신장(m))</p>
+      <p>BMI 지수 18.5이하 : 저체중 / 18.5 ~ 23 : 정상 / 23~25 : 과체중 / 25~30 : 비만 / 30 ~ 35 : 고도비만</p>
+      <p class="p02">각 단계별 배경색 지정 저체중 : 주황색 / 정상 : 녹색 / 과체중 : 파랑색 / 비만 : 보라색 / 고도비만 : 빨강색 </p>
+  
+      <h4>BMI 지수 구하기</h4>
+      <p>신장 : <input type="text" id="height"> m</p>
+      <p>체중 : <input type="text" id="weight"> kg</p>
+      <p><input type="button" value="BMI 지수 계산" id="cal_btn"></p>
+      <p>출력결과 : <span id="result"></span></p>
+    </div>
+  
+    <div class="box">
+      <h3>2. 자바스크립트 함수를 사용하여 모바일 계산기 만들기</h3>
+      <div class="calculator">
+        <span class="time">12:24</span>
+        <span class="bat">5G 100%</span>
+        <ul>
+          <!-- 결과 출력 -->
+          <li><input type="text" placeholder="0" id="result"></li>
+          <!-- 출력버튼 -->
+          <li><input type="button" value="CLEAR" onclick="init()" class="nth2"></li>
+          <li><input type="button" value="%" onclick="cal('%')" class="in01"></li>
+          <li><input type="button" value="/" onclick="cal('/')" class="in01"></li>
+          <li><input type="button" value="1" onclick="cal(1)"></li>
+          <li><input type="button" value="2" onclick="cal(2)"></li>
+          <li><input type="button" value="3" onclick="cal(3)"></li>
+          <li><input type="button" value="*" onclick="cal('*')" class="in01"></li>
+          <li><input type="button" value="4" onclick="cal(4)"></li>
+          <li><input type="button" value="5" onclick="cal(5)"></li>
+          <li><input type="button" value="6" onclick="cal(6)"></li>
+          <li><input type="button" value="+" onclick="cal('+')" class="in01"></li>
+          <li><input type="button" value="7" onclick="cal(7)"></li>
+          <li><input type="button" value="8" onclick="cal(8)"></li>
+          <li><input type="button" value="9" onclick="cal(9)"></li>
+          <li><input type="button" value="-" onclick="cal('-')" class="in01"></li>
+          <li><input type="button" value="0" onclick="cal(0)" class="nth2"></li>
+          <li><input type="button" value="." onclick="cal('.')"></li>
+          <li><input type="button" value="=" onclick="result()" class="in01"></li>
+        </ul>
+        <span class="bottom_bar">&nbsp;</span>
+      </div>
+    </div>
+    <div class="box">
+      <h3>3. 원하는 숫자까지의 합계출력</h3>
+      <p>사용자가 명령프롬프트를 이용하여 숫자를 입력하면, 1부터 해당하는 숫자까지의 합계를 출력해주는 함수를 작성하여 출력한다.</p>
+      <p><label for="number">합계를 구할 숫자입력 : </label><input type="text" id="number"></p>
+      
+        <p><label for="'result" class="res">합계 결과 : </label><input type="text" id="s_result"></p>
+      
+        <p><input type="button" id="res_btn" value="합계구하기"></p>
+    </div>
+  </div>
+
+  <script src="./script/ex03_1.js"></script>
+  <script src="./script/ex03_2.js"></script>
+  <script src="./script/ex03_3.js"></script>
+</body>

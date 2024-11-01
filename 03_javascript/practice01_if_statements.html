@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS_실습예제01_if문을 활용한 슬라이드 구현하기</title>
+  <link rel="stylesheet" href="./css/base.css">
+  <style>
+    .b_wrap{width: 1200px; margin: 0 auto;}
+    /* 공통서식 */
+    h2{display: inline-block;padding: 0px 20px; transform: translateY(3px);}
+    /* h3{padding: 0px 0px 0px 0px;} */
+    .box{
+      background: #eee;
+      padding: 20px 20px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    } 
+    .p01{padding-top: 15px;}
+    pre{background: #333; color: #fff; font-size: 14px; padding: 20px; box-sizing: border-box; border-radius: 12px; margin: 15px 0px 20px 0px;}
+    .c01{color: aquamarine;}
+
+    .wrap{display: flex;}
+    pre{width: calc(100% - 480px);}
+    .sbox *{margin: 0px; padding: 0px;}
+    .sbox{
+      box-sizing: border-box;
+      margin: 15px 30px 20px 0px;
+      width: 450px; border: 1px solid #999;
+      text-align: right;
+      position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      background: #fff1ce;
+    }
+    .sbox h3{
+      text-align: center;
+      background: #fff1ce;
+      line-height: 50px;
+    }
+    .sbox .p02{
+      right: 0px;
+      line-height: 30px;
+      position: absolute;
+      background: #fff1ce9c;
+      padding: 4px 8px;
+    }
+
+    .sbox img{
+      width: 100%;
+      height: 450px;
+      vertical-align: top;
+    }
+
+    .btn{
+      font-size: 20px;
+      padding: 4px 8px;
+    }
+    .sbox p{text-align: center; line-height: 30px;}
+  </style>
+</head>
+<body>
+  <div class="b_wrap">
+    <a href="../index.html" title="메인페이지 바로가기" class="b_btn">
+      <img src="../images/icon_home.png" alt="icon_home">
+    </a>
+    <h2>실습예제01 _ if문을 활용한 슬라이드 콘텐츠 구현하기</h2>
+    <p class="p01">&#8226; 이미지 5장을 사용하여 '좌/우'버튼 클릭 시 이미지와 페이지 번호가 변경되도록 하기</p>
+    <p>&#8226; article 박스 안에 이미지 태그와 아이콘, 페이지 번호를 표시하도록 한다.</p>
+    <p>&#8226; 좌/우 버튼 클릭 시 각각 해당하는 함수를 만들어서 페이지 번호가 증가/감소하도록 한다. 버튼 클릭시 이미지 src 속성 값을 변경하여 이미지가 변경되도록 함</p>
+  
+    <div class="wrap">
+      <article class="sbox">
+        <h3>귀여워 강아지</h3>
+        <p class="p02">
+          <span id="left_btn" class="btn"> &#129044;</span>
+          <span id="page"></span>
+          <span id="right_btn" class="btn">&#129046;</span>
+        </p>
+        <img src="./images/dog1.jpg" alt="강쥐1" id="dog">
+        <br><br><br><p>좋아하니까 전부 귀여운 거야.!</p>
+        <p>예전부터도 꽤 귀엽다고는 생각했지만...<br>
+        최근에는 정말...<br>말도 안되게 귀여운 거 아닌가라는 생각이 든다.</p>
+      </article>
+      <pre>
+        <span class="c01"> //1. 변수생성</span>
+        let n = 1;
+        const l_btn =  document.getElementById('left_btn');
+        const r_btn = document.getElementById('right_btn');
+    
+        <span class="c01">//2. 페이지 번호 변수 선언</span>
+        let page_n = document.getElementById('page');
+        
+        <span class="c01">//3. 페이지 번호 출력</span>
+        page_n.innerHTML = n + ' / 5';
+    
+        <span class="c01">//4. 왼쪽 버튼 클릭 이벤트</span>
+        l_btn.addEventListener('click', function(){
+          <span class="c01">// window.alert('오른쪽버튼 클릭');</span>
+          if(n==1){
+            n=5;
+          }else{
+            n--;
+          }
+          page_n.innerHTML = n + ' / 5';
+          document.getElementById('dog').src='./images/dog'+n+'.jpg';
+        });
+    
+        <span class="c01">//5. 오른쪽 버튼 클릭 이벤트</span>
+        r_btn.addEventListener('click', function(){
+          <span class="c01">// window.alert('오른쪽버튼 클릭');</span>
+          if(n==5){
+            n=1;
+          }else{
+            n++;
+          }
+          page_n.innerHTML = n + ' / 5';
+          document.getElementById('dog').src='./images/dog'+n+'.jpg';
+        }); </pre>
+    </div>
+  </div>
+    
+  <script>
+    //1. 변수생성
+    let n = 1;
+    const l_btn =  document.getElementById('left_btn');
+    const r_btn = document.getElementById('right_btn');
+
+    //2. 페이지 번호 변수 선언
+    let page_n = document.getElementById('page');
+    
+
+    //3. 페이지 번호 출력
+    page_n.innerHTML = n + ' / 5';
+
+  
+    l_btn.addEventListener('click', function(){
+      // window.alert('오른쪽버튼 클릭');
+      if(n==1){
+        n=5;
+      }else{
+        n--;
+      }
+      page_n.innerHTML = n + ' / 5';
+      document.getElementById('dog').src='./images/dog'+n+'.jpg';
+    });
+
+    r_btn.addEventListener('click', function(){
+      // window.alert('오른쪽버튼 클릭');
+      if(n==5){
+        n=1;
+      }else{
+        n++;
+      }
+      page_n.innerHTML = n + ' / 5';
+      document.getElementById('dog').src='./images/dog'+n+'.jpg';
+    });
+  </script>
+</body>
+</html>

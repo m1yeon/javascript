@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS_13_객체(object)_내장객체_배열(array)객체</title>
+  <link rel="stylesheet" href="./css/base.css">
+  <style>
+    /* 공통서식 */
+    h2{display: inline-block;padding: 0px 20px; transform: translateY(3px);}
+    /* h3{padding: 0px 0px 0px 0px;} */
+    .box{
+      background: #eee;
+      padding: 20px 20px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    .p01{padding-top: 15px;}
+    pre{background: #333; color: #fff; font-size: 14px; padding: 20px; box-sizing: border-box; border-radius: 12px; margin: 15px 0px 20px 0px; width: 100%;}
+    .c01{color: aquamarine;}
+    .c_img{width: 600px; padding-top: 15px;}
+    /* ----------------- */
+    .p02{font-size: 14px; color: #555;}
+    .t01{padding-bottom: 10px;}
+
+    .txt01, .txt02{
+      font-weight: bold;
+    }
+
+    #food{
+      width: 300px; height: fit-content;
+      border: 3px solid #555;
+      margin: 0 auto;
+      text-align: center;
+    }
+    #food img{vertical-align: top;}
+
+    #cou{
+      width: 325px; height: 690px;
+      border: 3px solid #333;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+
+    #left_btn, #right_btn{
+      position: absolute;
+      font-size: 26px;
+      top: 50px;
+      background: rgba(0,0,0,.6); color: #fff;
+      padding:10px 15px;
+      top: 350px;
+    }
+
+    #left_btn{left: 0px;}
+
+    #right_btn{right: 0px;}
+
+    #cou > h4{
+      font-size: 22px;
+      margin: 10px
+    }
+
+    #cou >p{
+      font-size: 26px; font-weight: bold; color: #00f;
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+  <a href="../index.html" title="메인페이지 바로가기" class="b_btn">
+    <img src="../images/icon_home.png" alt="icon_home">
+  </a>
+  <h2>13_객체(object)_내장객체_배열(array)객체</h2>
+  <p class="p01">배열객체(array)란?</p>
+  <p>&#8226; 연관된 데이터를 하나처럼 관리하고 싶을 때 사용</p>
+  <p>&#8226; 복수의 데이터를 제어할 수 있는 다양한 함수를 제공함</p>
+  <p>&#8226; 배열의 함수를 이용한 데이터의 편리한 조작이 가능함</p>
+  <br>
+
+  <div class="box">
+    <h3>1. 배열 객체 선언하기</h3>
+    <p>&#8226; 방법1. let array = new Array(data1, data2, data3, data4.....dataN);</p>
+    <p class="p02 t01">ex1. let fruits = new Array('수박','참외','귤','감','사과','포도','복숭아'...)</p>
+    <p>&#8226; 방법2. elt array = [data1, data2, data3, data4.....dataN]</p>
+    <p class="p02">ex2. let fruits = ['수박','참외','귤','감','사과','포도','복숭아'...]</p>
+  </div>
+
+  <div class="box">
+    <h3>2. 배열 객체 호출하기</h3>
+    <p>&#8226; 배열객체의 데이터를 호출하고자 할 때는 인덱스 번호를 사용한다 (번호는 0부터 시작)</p>
+    <script>
+      //방법1. 배열객체 선언하기
+      let fruits = new Array('수박','참외','귤','감','사과','포도','복숭아');
+  
+      //출력하기
+      document.write('<p>'+fruits+'<br></p>');
+      document.write('<p>'+fruits[0]+'<br></p>');
+      document.write('<p>'+fruits[1]+'<br></p>');
+      document.write('<p>'+fruits[2]+'<br></p>');
+  
+      //2. 방법2. 배열객체 선언하기
+      let food = ['자장면','짬뽕','햄버거','돈가스','라면','김밥','샐러드','열무비빔밥','컵밥','닭가슴살']
+  
+      //3. 배열데이터 출력하기
+      document.write('<hr><p>배열데이터 추출하기</p>');
+      document.write(`<p>내가 선택한 오늘의 점심 메뉴는 <b>${food[0]}</b>입니다.</p>`);
+  
+      //수학객체 random 메서드로 추천메뉴 만들기
+      document.write('<hr><p>수학객체_랜덤 메서드로 메뉴 추천하기</p>')
+      let ranN = Math.floor(Math.random()*11);
+      document.write('<p>내가 선택한 오늘의 점심 메뉴는 <b>'+food[ranN] +'</b>입니다.</p>');
+    </script>
+    <img src="./images/13_array_code1.JPG" alt="배열 객체 호출하기 js 코드" class="c_img">
+  </div>
+
+  <div class="box">
+    <h3>3. 실습예제_요일별 추천 메뉴 만들기</h3>
+    <p>&#8226; 실습예제. 중화요리 이미지를 사용하여 요일별 추천메뉴 만들기</p>
+    <p>&#8226; 날짜 객체를 사용하여 현재 요일 번호 구해서 배열번호에 맞는 이미지 파일명을 찾아 img태그에 대입해 음식사진이 요일별로 출력되도록 하기</p>
+    <p>&#8226; 날짜 객체 사용하기</p>
+    <div id="food"></div>
+    <img src="./images/13_array_code2.JPG" alt="배열객체 실습 JS코드" class="c_img">
+  </div>
+
+  <script>
+    //1. 배열객체를 생성하여 음식파일명을 배열로 담는다.
+    let c_food = ['food1','food2','food3','food4','food5','food6','food7'];
+
+    let yoil = ['(일)','(월)','(화)','(수)','(목)','(금)','(토)'];
+
+    //날짜 객체
+    let today = new Date();
+    // document.write('<p>'+today+'</p>');
+    // document.write('<p>'+today.getDay()+'</p>');
+    // document.write('<p>'+yoil[today.getDay()]+'</p>');
+    let y = yoil[today.getDay()];
+    let n = today.getDay();
+
+    //# food 박스에 내용 출력하기
+    document.getElementById('food').innerHTML='<h3>오늘'+y+'의 추천요리</h3><img src="./images/'+c_food[n]+'.jpg" alt="음식 사진">';
+  </script>
+</body>
+</html>

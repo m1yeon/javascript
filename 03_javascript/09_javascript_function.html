@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS_09_자바스크립트 함수(function)</title>
+  <link rel="stylesheet" href="./css/base.css" type="text/css">
+  <script>
+    //1. 함수 선언하기
+    function btn_off(){
+      window.alert('전원을끄시겠습니까? 한 번 더 눌러주세요.');
+    }
+  </script>
+  <style>
+    h2{display: inline-block;padding: 0px 20px; transform: translateY(3px);}
+    /* h3{padding: 0px 0px 0px 0px;} */
+		.box{
+			background: #eee;
+			padding: 20px 20px;
+			border-radius: 20px;
+			margin-bottom: 20px;
+		}
+    .p01{padding-top: 15px;}
+    pre{background: #333; color: #fff; font-size: 14px; padding: 20px; box-sizing: border-box; border-radius: 12px; margin: 15px 0px 20px 0px; width: 100%;}
+    .c01{color: aquamarine;}
+
+    .txt01{font-weight: bold;}
+    /* .p01{border: 1px solid #333;} */
+    .btn_off{margin-left: 10px; padding: 4px 8px;}
+    .box1 > img{width: 800px;}
+
+  </style>
+</head>
+<body>
+  <a href="../index.html" title="메인페이지 바로가기" class="b_btn">
+		<img src="../images/icon_home.png" alt="icon_home">
+	</a>
+  <h2>09_자바스크립트 함수(function)</h2>
+  <p class="p01">함수(function)란, 일련의 내용을 삽입하여 사용자가 언제든 호출하여 내용을 실행 할 수 있는 실행문</p>
+    <p>&#8226; 언제든 사용자가 필요 할 때 다시 실행 할 수 있음</p>
+    <p>&#8226; 코드의 중복 제거 및 재사용이 용이함</p>
+    <p>&#8226; 유지 보수의 용이성이 높음</p>
+    <p>&#8226; 함수의 종류에는 <b>내장함수</b>(자바스크립트에 있는 함수 ex: alert, prompt, console등), <b>사용자 정의 함수</b>(내가 이름을 지정한)가 있음</p>
+    <br>
+    <input type="button" value="전원버튼" onclick="btn_off()" class="btn_off">
+    <p>input type="button" value="ON/OFF" onclick="btn_off()" <br>
+      onclick에 함수이름을 호출해 그 기능을 하게 해줌</p>
+      <br>
+<!-- -------------------------------- -->
+<div class="box box1">
+  <h3>1. 자바스크립트 함수 호이스팅</h3>
+  <p>자바스크립트가 실행되면 parser가 빌드하면서 문법을 검사한다.<br>
+  이 와중에 끌어올릴 값을 선택하여 내부적으로 최상단에서 끌어 올려 처리한다.<br>이것을 호이스팅 문법이라고 한다.</p>
+  <img src="./images/1220_hosting.png" alt="호이스팅">
+</div>
+<!-- -------------------------------- -->
+<div class="box">
+  <h3>2. 함수 문법 3가지</h3>
+  <p>1. 매개변수가 없는 일반 사용자 정의 함수 2. 매개변수가 있는 함수 3. 리턴값이 있는 함수</p>
+  <pre>
+    <span class="c01">1. 매개변수가 없는 일반 사용자정의 함수</span>
+    function 함수명(){
+      실행할 내용;
+    }
+
+    <span class="c01">2. 매개변수가 있는 함수</span>
+    function 함수명(변수1, 변수2, 변수3, 변수4...){
+      실행할 내용;
+    }
+
+    <span class="c01">3. 리턴값이 있는 함수</span>
+    function 함수명(변수1, 변수2, 변수3, 변수4...){
+      실행할 내용;
+      return 실행결과;
+    }
+  </pre>
+  <!-- -------------------------- -->
+  <h4>(1) 매개변수가 없는 일반 사용자 정의 함수</h4>
+  <pre>
+    <span class="c01">(1) 매개변수가 없는 일반 사용자 정의함수</span>
+    function print01(){
+      document,write('p매개변수가 없는 일반 사용자 정의 함수입니다. /p');
+    }
+    
+    <span class="c01">(2)함수명을 작성해 호출하기</span>
+    print();
+
+    <span class="c01">(1), (2)의 순서는 상관없음 = 호이스팅
+    함수 호출 > 함수 정의 or 함수 정의 > 함수 호출</span></pre>
+  <!-- -------------------------- -->
+  <h4>(2) 매개변수가 있는 함수</h4>
+  <script>
+    //3. 매개변수가 있는 사용자 정의 함수
+    function print02(name, region){
+      document.write(`<p>${name}가 사는 지역은 ${region}입니다.</p>`);
+    }
+
+    //4.매개변수가 있는 함수 호출하기
+    print02('철수','서울');
+  </script>
+  <pre>
+    <span class="c01">(2) 매개변수가 있는 사용자 정의 함수</span>
+    function print02(name, region){<span class="c01">//매개변수 name, region</span>
+      document.write(`p${name}가 사는 지역은 ${region}입니다./p`);
+      }
+        print02('철수','서울');<span class="c01"> //함수 호출_  매개변수 name, region에 철수, 서울 이라는 값을 담기</span></pre>   
+
+  <h4>(3) 리턴값이 있는 함수</h4>
+  <script>
+    function print04(){
+      document.write('<p>리턴값이 있는 함수입니다.</p>');
+      return window.alert('함수종료입니다.더이상 실행되지 않습니다.');
+
+      document.write('이 문장은 출력되지 않습니다.');
+    }
+    print04();
+  </script>
+  <pre>
+    <span class="c01">(3) 리턴값이 있는 함수</span>
+    function print04(){
+      document.write('p리턴값이 있는 함수입니다./p'); <span class="c01">문서에 출력됨</span>
+      return window.alert('함수종료입니다.더이상 실행되지 않습니다.'); <span class="c01">//여기서 함수 종류 밑의 코드는 실행되지 않음</span>
+      document.write('이 문장은 출력되지 않습니다.');
+      }
+    print04();</pre>
+</div>
+
+<!-- -------------------------------- -->
+
+<!-- -------------------------------- -->
+    <div class="box">
+      <h3>3. 화살표 함수</h3>
+      <p>&#8226; 2015년 자바스크립트 표준화가 되면서 새롭게 변경된 함수 작성법</p>
+      <p>&#8226; function을 =>(화살표)로 단축</p>
+      <p>&#8226; 익명 함수로만 작성이 가능함</p>
+      <pre>
+        <span class="c01">// 1. 매개변수 없는 함수</span>
+        const h1 = function(){
+          return('매개변수 없는 화살표 함수 사용하기');
+        }
+        console.log(h1);
+    
+        <span class="c01">// 2. 매개변수 없는 화살표 함수</span>
+        const h2 =()=>{ <span class="c01"> // function대신 =>사용</span>
+          return '매개변수 없는 화살표 함수 사용하기';
+        }
+        console.log(h2);
+
+        <span class="c01">// 3. 화살표 함수_{}도 생략</span>
+        const h3 =()=> alert('매개변수 없는 화살표 함수 사용하기');
+        console.log(h3);
+      </pre>
+      <script>
+        // 1. 매개변수 없는 함수
+        const h1 = function(){
+          return('매개변수 없는 화살표 함수 사용하기');
+        }
+        console.log(h1);
+    
+        //2. 매개변수 없는 화살표 함수
+        const h2 =()=>{ //function대신 =>사용
+          return '매개변수 없는 화살표 함수 사용하기';
+        }
+        console.log(h2);
+    
+        const h3 =()=> alert('매개변수 없는 화살표 함수 사용하기');
+        console.log(h3);
+      </script>
+    </div>
+
+    <div class="box">
+      <h3>4. 실습예제</h3>
+      <p>명령 프롬프트(prompt)를 사용하여 사용자가 닉네임을 입력시 함수로 전달하여 '닉네임'님이 로그인 하셨습니다. 라고 출력하기</p>
+
+      <script>
+        let loginN = prompt('안녕하세요:) 닉네임을 입력해주세요.');
+        function l_message (a) {
+          document.write('<p><b>반갑습니다. '+a+'님이 로그인 하셨습니다.</b></p>');
+        }
+
+        l_message(loginN);
+      </script>
+      <pre>
+        let loginN = prompt('안녕하세요:) 닉네임을 입력해주세요.'); <span class="c01">prompt로 사용자가 별명 입력</span>
+        function l_message (a) { <span class="c01">함수 l_message에서 사용될 매개변수값을 넣기</span>
+          document.write('반갑습니다. '+a+'님이 로그인 하셨습니다.); <span class="c01">실행할 내용</span>
+        }
+
+        l_message(loginN); <span class="c01">함수 호출</span>
+
+        <span class="c01">//맨 위  let loginN = prompt('닉네임을 입력해주세요.'); 함수를 따로 쓰지 않고,
+          l_message(prompt('별명을 입력하세요'));로 생략 가능함</span>
+      </pre>
+    </div>
+</body>
+</html>

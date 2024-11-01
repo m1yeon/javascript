@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS_실습예제02 _ 제어문을 활용한 탭메뉴 구현하기</title>
+  <link rel="stylesheet" href="./css/base.css">
+  <style>
+    .wrap{width: 1200px; margin: 0 auto;}
+    /* 공통서식 */
+    h2{display: inline-block;padding: 0px 20px; transform: translateY(3px);}
+    /* h3{padding: 0px 0px 0px 0px;} */
+    .box{
+      background: #eee;
+      padding: 20px 20px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    } 
+    .p01{padding-top: 15px;}
+    pre{background: #333; color: #fff; font-size: 14px; padding: 20px; box-sizing: border-box; border-radius: 12px; margin: 0px; width: calc(100% - 430px);}
+    .c01{color: aquamarine;}
+
+    /* ----------------------- */
+    .flex_wrap{display: flex;}
+    .product{margin-right: 30px;}
+    .product *{margin:0px; padding:0px;}
+    .photo{
+      width: 400px;border: 1px solid #555;
+      overflow: hidden;
+    }
+    .photo > img{width: 400px; height: 400px;}
+    .photo ul{display: flex; width: 400px;}
+
+    .photo ul li{list-style:none; width: 20%;}
+    .photo ul li img{
+      width: 100%;
+      height: 80px;
+      filter:grayscale(1);
+    }    
+    .photo img{vertical-align: top;}
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a href="../index.html" title="메인페이지 바로가기" class="b_btn">
+      <img src="../images/icon_home.png" alt="icon_home">
+    </a>
+    <h2>실습예제02 _ 제어문을 활용한 탭메뉴 구현하기</h2>
+    <p class="p01">&#8226; 탭 콘텐츠(tap-content) : 제한된 공간 안에서 메뉴를 클릭시 해당 영역안에서만 콘텐츠 내용이 보이도록 하는 콘텐츠 제작 방법이며, 여러개의 메뉴를 통해 다양한 내용을 보여줄 수 있다는 장점이 있음</p>
+    <p>&#8226; CSS로는 라디오 버튼을 통해 제작이 가능하며, javascript에서는 반복문을 통해 제작이 가능함</p>
+    <p>&#8226; 또한 jquery에서는 '문서객체조작' 메서드를 통해 제작이 가능해서 어떤 언어로 사용해도 모두 가능함</p>
+    <p>&#8226; 이미지 5장을 사용하여 섬네일 이미지 클릭시 해당 사진 보여주기</p>
+    <br>
+    <div class="flex_wrap">
+      <section class="product">
+        <article class="photo">
+          <img src="./images/dog1.jpg" alt="사진1" id="big_img">
+    
+          <!-- 섬네일 이미지 버튼 -->
+          <ul>
+            <li><img src="./images/dog1.jpg" alt="섬네일" class="small"></li>
+            <li><img src="./images/dog2.jpg" alt="섬네일" class="small"></li>
+            <li><img src="./images/dog3.jpg" alt="섬네일" class="small"></li>
+            <li><img src="./images/dog4.jpg" alt="섬네일" class="small"></li>
+            <li><img src="./images/dog5.jpg" alt="섬네일" class="small"></li>
+          </ul>
+        </article>
+      </section>
+      <pre>
+  
+        <span class="c01">//큰 사진 변경을 위한 변수 저장</span>
+        let b_img = document.querySelector('#big_img');
+        <span class="c01">// class명은 getElementsByClassName(): 클래스명 지정 또는 querySelectAll() : 내가 선택한 것을 다 담겠다는 의미</span>
+    
+        <span class="c01">//작은 섬네일 사진 변수로 저장하기</span>
+        let s_img = document.querySelectorAll('.small');
+    
+        <span class="c01">//반복문을 사용해 목록ul안에 있는 img를 개별적으로 선택하여 각 '클릭이벤트'를 만듬
+          _ 이미지는 클릭이 안되니가 클릭 이벤트로 클릭 할 수 있게 만들어 준다는 것임</span>
+        for(let i=0;i&#5176;s_img.length;i++){  <span class="c01">//  i &#5176; 5;  s_img.length; i가 이미지의 개수만큼 반복을 하겠다는 의미</span>
+          console.log(s_img[i]);
+          s_img[i].addEventListener('click',function(){
+           <span class="c01"> // window.alert('클릭이벤트 실행');
+            let src = this.src;//사용자가 선택한 이미지의 src 주소값을 불러와 변수에 담음</span>
+            console.log(src);
+    
+            <span class="c01">//src변수값을 big_img에 대입하여 이미지가 변경되도록 함</span>
+            b_img.setAttribute('src', src);  <span class="c01">//setAttribute('속성이름','속성값')</span>
+    
+            for(let j=0;j&#5176;s_img.length;j++){
+              console.log(s_img[j]);
+              s_img[j].style.filter='grayscale(1)';
+              this.style.filter ='grayscale(0)';
+            }
+          });
+        }
+      </pre>
+    </div>
+  </div>
+
+  <script>
+    //큰 사진 변경을 위한 변수 저장
+    let b_img = document.querySelector('#big_img');
+    // class명은 getElementsByClassName(): 클래스명 지정 또는 querySelectAll() : 내가 선택한 것을 다 담겠다는 의미
+
+
+    //작은 섬네일 사진 변수로 저장하기
+    let s_img = document.querySelectorAll('.small');
+
+    //반복문을 사용해 목록ul안에 있는 img를 개별적으로 선택하여 각 '클릭이벤트'를 만듬 _ 이미지는 클릭이 안되니가 클릭 이벤트로 클릭 할 수 있게 만들어 준다는 것임
+
+    for(let i=0;i<s_img.length;i++){ //  i < 5;   i < s_img.length; i가 이미지의 개수만큼 반복을 하겠다는 의미
+      console.log(s_img[i]);
+      s_img[i].addEventListener('click',function(){
+        // window.alert('클릭이벤트 실행');
+        let src = this.src;//사용자가 선택한 이미지의 src 주소값을 불러와 변수에 담음
+        console.log(src);
+
+        //src변수값을 big_img에 대입하여 이미지가 변경되도록 함
+        b_img.setAttribute('src', src); //setAttribute('속성이름','속성값')
+
+        for(let j=0;j<s_img.length;j++){
+          console.log(s_img[j]);
+          // s_img[j].style.border='1px solid rgba(255,255,255,.0)';
+          // this.style.border ='1px solid #000';
+          s_img[j].style.filter='grayscale(1)';
+          this.style.filter ='grayscale(0)';
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>

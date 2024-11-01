@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS_10_자바스크립트_이벤트(event)</title>
+  <link rel="stylesheet" href="./css/base.css">
+  <style>
+    /* 공통서식 */
+    h2{display: inline-block;padding: 0px 20px; transform: translateY(3px);}
+    /* h3{padding: 0px 0px 0px 0px;} */
+		.box{
+			background: #eee;
+			padding: 20px 20px;
+			border-radius: 20px;
+			margin-bottom: 20px;
+		}
+    .p01{padding-top: 15px;}
+    pre{background: #333; color: #fff; font-size: 14px; padding: 20px; box-sizing: border-box; border-radius: 12px; margin: 15px 0px 20px 0px; width: 100%;}
+    .c01{color: rgb(43, 196, 132);}
+    .c_img{width: 700px; padding-top: 15px;}
+    /* ------------------------------- */
+
+    /* 마우스 아웃 */
+    #banner{
+      width: 380px; height: 152px;
+      padding: 15px;
+      margin-top: 15px;
+      border: 3px solid #333;
+      border-radius: 10px;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+    #banner img{width: 100%;}
+
+    /* 모달윈도우 */
+    #modal *{padding: 0px; margin: 0px;}
+    #modal{
+      position: fixed; top: 0px;
+      width: 100%; height: 100%;
+      background:rgba(0,0,0,.7);
+      display: none;
+      transition: 0.3s;
+    }
+    #modal > .modal_inner{
+      width: 380px; height: 420px;
+      background: #fff;
+      position: absolute;
+      left: 50%; top: 50%;
+      transform: translate(-50%,-50%);/* transform: translate(-190px,-215px); */
+    }
+    .modal_inner img{width: 100%;}
+    .modal_inner p{
+      line-height: 30px;
+      text-indent: 15px;
+      font-size: 15px;
+    }
+    input[type=button]{
+      border: none; background: none;
+      font-size: 14px; color: #777;
+      position: absolute; right: 15px;
+      line-height: 30px;
+    }
+    input[type=checkbox]{transform: scale(1.1); position: relative; top: 2px;}
+    #cl_btn:hover{font-weight: bold;}
+  </style>
+</head>
+
+<body>
+<a href="../index.html" title="메인페이지 바로가기" class="b_btn">
+  <img src="../images/icon_home.png" alt="icon_home">
+</a>
+  <h2>10_자바스크립트_이벤트(event)</h2>
+  <p class="p01">&#8226; Event : 어떠한 특별한 상황, 행사, 사건</p>
+  <p>&#8226; 웹페이지에서는 '클릭','오버','아웃','드래그','더블클릭','스크롤','키보드' 등의 행위를 했을 때 일어나는 사건을 이벤트라고 함</p>
+  <br>
+  <div class="box">
+    <h3>1. 이벤트의 종류</h3>
+    <p>&#8226; onclick(); 마우스로 해당요소를 클릭 했을 때 이벤트 발생</p>
+    <p>&#8226; ondblclick(); 마우스로 해당 요소를 더블 클릭하였을 때 이벤트 발생</p>
+    <p>&#8226; onkeydown(); 키보드를 눌렀을 때 이벤트 발생</p>
+    <p>&#8226; onkeypress(); 키보드를 눌렀다가 땠을 때 이벤트 발생</p>
+    <p>&#8226; onkeyup(); 키보드를 놓았을 때 이벤트 발생</p>
+    <p>&#8226; onmousedown(); 마우스로 버튼을 눌렀을 때 이벤트 발생</p>
+    <p>&#8226; onmouseup(); 마우스로 버튼을 눌렀다가 놓았을 때 이벤트 발생</p>
+    <p>&#8226; onmouseover(); 버튼에 마우스를 올렸을 때 이벤트 발생</p>
+    <p>&#8226; onmouseout(); 버튼에 마우스를 올렸다가 떼었을 때 이벤트 발생</p>
+    <br>
+    <h4>마우스 오버/아웃 이벤트</h4>
+    <div id="banner">
+      <img src="./images/1213img/mbn04.png" alt="" id="b_img">
+    </div>
+    <img src="./images/10_event_code1.JPG" alt="자바스크립트 코드1" class="c_img">
+    </div>
+    <div class="box">
+      <h3>2. 모달윈도우 == 팝업레이어</h3>
+      <p>&#8226; 모달윈도우(modal window)는 사용자 인터페이스(UI, useer interface)디자인 개념에서<br>자식윈도우에서 부모 윈도우로 돌아가기 전 사용자의 상호 동작을 요구하는 창을 말함</p>
+      <p>&#8226; 모달 윈도우는 부모창을 어둡게 하고 자식 요소가 화면의 가운데 중앙에 배치하도록 하며, 오른쪽 상단에 '닫기'버튼을 만들어 닫을 수 있도록 함</p>
+      <img src="./images/10_event_code2.JPG" alt="자바스크립트 코드2" class="c_img">
+    </div>
+
+    <div id="modal">
+      <div class="modal_inner">
+        <a href="#" title="이벤트 바로가기">
+          <img src="./images/NEWS BANNER.jpg" alt="배너">
+        </a>
+        <p>
+          <input type="checkbox" id="ck_box">
+          <label for="ck_box">오늘 하루 열지 않음</label>
+          <input type="button" value="닫기" id="cl_btn">
+        </p>
+      </div>
+    </div>
+
+  <script>
+    //배너이미지(#b_img)에 마우스 오버시 이미지 변경하고 다시 마우스 아웃시 원래이미지 나오게 하기 
+    const b_img = document.getElementById('b_img');
+    const banner = document.getElementById('banner');
+
+    b_img.addEventListener('mouseover',function(){ //마우스 오버시
+      this.src='./images/1213img/mbn04ov.png'; //b_img의 src 주소 변경
+      banner.style.border='3px solid #dd0000'; //banner의 스타일 변경
+    });
+
+    b_img.addEventListener('mouseout',function(){ //마우스 아웃시
+      this.src='./images/1213img/mbn04.png'; //b_img의 src 주소 변경
+      banner.style.border='3px solid #000'; //banner의 스타일 변경
+    });
+
+    //모달 이벤트
+    //1. 변수선언
+    let modal =document.getElementById('modal');
+    let c_btn = document.getElementById('cl_btn');
+
+    //2. 문서가 로딩이 끝나면 modal이 보이도록 하기
+    window.onload = function(){
+      modal.style.display='block';
+    }
+
+    //3. 닫기 버튼 클릭시 #modal 숨기기
+    c_btn.addEventListener('click',function(){
+      // modal.style.display='none'; 시간 속성 display에는 절대 줄 수 없음. opacity에 값을 주면서 줘여함
+      //시간에 맞춰 함수를 실행함
+      modal.style.opacity='0';
+      setTimeout(dispay_none, 1000);
+    });
+
+    function dispay_none(){
+      modal.style.display='none';
+    }
+    </script>
+</body>
+</html>

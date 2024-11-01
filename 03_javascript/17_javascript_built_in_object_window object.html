@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS_17_객체(object)_내장객체_윈도우객체(브라우저객체)</title>
+  <link rel="stylesheet" href="./css/base.css">
+  <style>
+    /* 공통서식 */
+    h2{display: inline-block;padding: 0px 20px; transform: translateY(3px);}
+    /* h3{padding: 0px 0px 0px 0px;} */
+    .box{
+      background: #eee;
+      padding: 20px 20px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    } 
+    .p01{padding-top: 15px;}
+    pre{background: #333; color: #fff; font-size: 14px; padding: 20px; box-sizing: border-box; border-radius: 12px; margin: 15px 0px 20px 0px; width: 100%;}
+    .c01{color: aquamarine;}
+    .c_img{width: 600px; padding-top: 15px;}
+    .img_box{width: 90%; margin:0px auto;}
+    /* ----------------- */
+    .btnP, .btn{padding-top: 10px;}
+    .btnP > input, .btn{padding: 2px 4px;}
+    
+    .popup_wrap{ 
+      display: none;
+      background-color:rgba(0,0,0,.35); position: fixed; width: 100%; height: 100%; left: 0px; top: 0px; transition: 0.4s;}
+    .popup{
+      overflow: hidden;
+      border-radius: 15px;
+      width: 380px; height: 420px;
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+    }
+    .popup input[type=button]{
+      border: none;
+      display: block;
+      background: #222;
+      color: #fff;
+      line-height: 35px;
+      width: 380px;
+      text-align: right;
+      padding-right: 15px;
+    }
+    .popup img{width: 100%; vertical-align: top;}
+  </style>
+</head>
+<body>
+  <a href="../index.html" title="메인페이지 바로가기" class="b_btn">
+    <img src="../images/icon_home.png" alt="icon_home">
+  </a>
+  <h2>17_객체(object)_내장객체_윈도우객체(브라우저객체)</h2>
+  <p class="p01">&#8226; <b>브라우저 객체</b>는 사용자가 사용하는 웹브라우저의 창에서 <b>다양한 동작이나 속성을 설정</b>하고자 할 때 사용하는 객체</p>
+  <p>&#8226; <b>window객체</b>는 브라우저 객체 중 <b>최상위 객체</b>로서 <b>현재 실행되고 있는 브라우저창</b>을 말함</p>
+  <br>
+  <div class="box">
+    <h3>1. window 객체의 속성</h3>
+      <p>&#8226; document</p>
+      <p>&#8226; frameElement</p>
+      <p>&#8226; innerHeight</p>
+      <p>&#8226; innderWidth</p>
+      <p>&#8226; location</p>
+      <p>&#8226; name</p>
+      <p>&#8226; screenX</p>
+      <p>&#8226; screenY</p>
+      <p>&#8226; screenX, screenY</p>
+      <p>&#8226; sessionStorge</p>
+  </div>
+
+  <div class="box">
+    <h3>2. window 객체의 메서드</h3>
+      <p>&#8226; <b>alert()</b> : 윈도우창에서 경고창(메세지)를 띄울 때 사용</p>
+      <p>&#8226; <b>blur()</b> : 현재창에서 포커스를 제거</p>
+      <p>&#8226; <b>close()</b> : 현재창을 닫기</p>
+      <p>&#8226; <b>confirm()</b> : 확인, 취소 버튼이 있는 확인창을 표시함</p>
+      <p>&#8226; <b>focus()</b> : 현재창에 포커스(초점)을 부여</p>
+      <p>&#8226; <b>moveBy()</b> : 현재창을 지정한 크기만큼 이동</p>
+      <p>&#8226; <b>moveTo()</b> : 현재창을 지정한 좌표로 이동</p>
+      <p>&#8226; <b>open()</b> :: 새로운 창을 열기</p>
+      <p>&#8226; <b>prompt()</b> : 사용자가 입력 가능한 프롬프트 창 열기</p>
+      <p>&#8226; <b>resizeTo()</b> : 동적으로 브라우저 창의 크기를 조절</p>
+      <p>&#8226; <b>scroll()</b> : 문서의 특정 위치로 스크롤 하기</p>
+      <p>&#8226;  <b>sizeToContent()</b> : 내용에 맞게 창의 크기를 조절</p>
+      <p>&#8226; <b>stop()</b> : 로딩 중지</p>
+  
+      <p class="btnP"><input type="button" value="alert()" id="btn01">
+      <input type="button" value="confirm()" id="btn02">
+      <input type="button" value="prompt()" id="btn03">
+      <input type="button" value="open()" id="btn04"></p>
+  </div>
+
+  <script>
+    // 윈도우객체 실습하기
+    //1. btn01 클릭시 alert();
+    const b1 = document.getElementById('btn01');
+
+    b1.addEventListener('click',function(){
+      alert('사용자에게 알림메세지를 전달합니다');
+    });
+
+    //2. btn02 클릭시 confirm();
+    const b2 = document.getElementById('btn02');
+
+    b2.addEventListener('click',function(){
+      confirm('확인/취소 메세지 띄우기');
+    });
+
+    //3. btn03 클릭시 prompt();
+    const b3 = document.getElementById('btn03');
+
+    b3.addEventListener('click',function(){
+      prompt('사용자가 입력할 수 있는 입력품 띄우기');
+    });
+
+    //4. btn04 클릭시 open();
+    const b4 = document.getElementById('btn04');
+
+    b4.addEventListener('click',function(){
+      window.open("22_popup_event.html","popup","width=450px,height=450px, toolbars=no, scrollbars=no,resizeable=no, top=100, left=100, location=no, location=no");
+    });
+  </script>
+</body>
+</html>

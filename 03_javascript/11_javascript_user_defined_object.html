@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS_11_객체(object)_사용자정의객체</title>
+  <link rel="stylesheet" href="./css/base.css">
+  <style>
+    /* 공통서식 */
+    h2{display: inline-block;padding: 0px 20px; transform: translateY(3px);}
+    /* h3{padding: 0px 0px 0px 0px;} */
+		.box{
+			background: #eee;
+			padding: 20px 20px;
+			border-radius: 20px;
+			margin-bottom: 20px;
+		}
+    .p01{padding-top: 15px;}
+    pre{background: #333; color: #fff; font-size: 14px; padding: 20px; box-sizing: border-box; border-radius: 12px; margin: 15px 0px 20px 0px; width: 100%;}
+    .c01{color: aquamarine;}
+    .c_img{width: 600px; padding-top: 15px;}
+
+    /*  */
+    .p02{display: inline-block; font-size: 14px; color: #555; margin-left: 13px;}
+    .p021{font-weight: 600; background: #efefef; border-radius: 20px; padding: 2px 10px;}
+
+    .s01{
+      font-weight: bold; font-size: 18px; color: #d00;
+    }
+
+
+    #info label{
+      display:inline-block;
+      width: 60px;
+    }
+
+    .ex1 fieldset{border-radius: 10px; margin-top: 15px; padding: 10px;}
+    .ex1 fieldset legend{padding: 10px; margin-left: 20px;}
+    .btn{padding: 2px 4px; margin-top: 5px;}
+    #report{padding-top: 10px;}
+
+  </style>
+</head>
+
+<body>
+  <a href="../index.html" title="메인페이지 바로가기" class="b_btn">
+    <img src="../images/icon_home.png" alt="icon_home">
+  </a>
+  <h2>11_객체(object)_사용자 정의객체</h2>
+  <h3 class="p01">객체(object)란?</h3>
+
+  <p>&#8226; 이름(key)과 값(value)로 구성된 속성을 담아놓은 컨테이너이다.</p>
+  <p>&#8226; 객체(object)는 <b>메서드와 속성</b>으로 나누어진다</p>
+  <p>&#8226; <b>메서드</b> : 기능적인 동작을 말함 / 동사_document.write(문서작성) _ 객체에 함수를 선언하면 메서드(method)를 사용할 수 있음</p>
+  <p>&#8226; <b>속성</b> : 정해진 기능 -> 서식 등을 말함 / 명사_style.color(서식) _ 객체에 변수를 선언하면 속성(property)을 사용할 수 있음.</p>
+  <br>
+  <h3>객체의 종류</h3>
+  <p>&#8226; <b>사용자 정의 객체</b> : 내장 객체를 제외한 사용자가 원하는 내용을 토대로 직접 객체를 선언하여 작성하는 방법</p>
+  <p>&#8226; <b>내장 객체</b> : 자바스크립트에서 미리 정해놓은 객체로 다양한 종류가 있음</p>
+  <span class="p02">내장객체에는  <span class="p021">수학객체(Math), 배열객체(Array), 날짜객체(Date), 문자열객체(String), 문서객체(Document), 윈도우객체(Window)등</span>이 있음</span>
+  <br>  <br>
+
+  <div class="box">
+    <h3>1. 사용자 정의 객체</h3>
+    <p>&#8226; <b>사용자 정의 객체</b> : 내장 객체를 제외한 사용자가 원하는 내용을 토대로 직접 객체를 선언하여 작성하는 방법</p>
+    <pre>
+      <span class="c01">//사용자 정의 객체 만드는 방법 1</span>
+      let 객체이름 = new Object();
+
+      <span class="c01">//사용자 정의 객체 만드는 방법 2</span>
+      let 객체이름 = {
+        이름1 : 값1
+        이름2 : 값2
+        이름3 : 값3
+      }</pre>
+  </div>
+  <div class="box ex1">
+    <h3>2. 사용자 정의 객체 실습1 _ let 객체이름 = new Object();</h3>
+    <fieldset>
+      <legend>휴대폰 정보 입력하기</legend>
+      <p>
+        <label for="company">제조회사 : </label>
+        <input type="text" id="company" value>
+      </p>
+
+      <p>
+        <label for="model">핸드폰 모델명 : </label>
+        <input type="text" id="model">
+      </p>
+
+      <p>
+        <label for="color">핸드폰 색상 : </label>
+        <input type="text" id="color">
+      </p>
+
+      <p>
+        <input type="button" value="입력한 정보 출력하기(신청 or 주문)" id="order" class="btn">
+      </p>
+    </fieldset>
+    <p id="result"></p>
+    <img src="./images/11_object_code1.JPG" alt="실습1" class="c_img">
+  </div>
+  <div class="box ex1">
+    <h3>3. 사용자 정의 객체 실습2 _ let 객체이름 = {이름 : 변수명(or 값)}</h3>
+    <p>&#8226; 두 번째 객체생성 방법을 통해 개인정보 입력양식을 만들어 사용자가 '성', '이름', '나이', '키', '몸무게'를 입력하고 '신청완료'를 누르면 객체정보가 출력되게 하기</p>
+    <p>&#8226; 나의 이름은 '홍길동'이고, 나이는 '23'세이며, 키는 '175', 몸무게는 '59'kg입니다.</p>
+
+    <form>
+    <div id="info">
+      <fieldset>
+        <legend>사용자 정의 객체 _ 사용자 정보 출력하기</legend>
+        <p>
+          <label for="firstname"> 성 : </label>
+          <input type="text" id="firstname" placeholder="예) 홍">
+        </p>
+
+        <p>
+          <label for="lastname"> 이름 :</label>
+          <input type="text" id="lastname" placeholder="예) 길동">
+        </p>
+
+        <p>
+          <label for="age">나 이 :</label>
+          <input type="number" id="age" placeholder="예) 25">
+        </p>
+
+        <p>
+          <label for="height"> 키 :</label>
+          <input type="number" id="height" placeholder="예) 170">
+        </p>
+
+        <p>
+          <label for="weight">몸무게 :</label>
+          <input type="number" id="weight" placeholder="예) 75">
+        </p>
+
+        <p><input type="button" value="확인" id="confirm" class="btn"> &nbsp; <input type="reset" value="입력취소" id="res_btn" class="btn"></p>
+      </fieldset>
+      </div>
+    </form>
+    <p id="report"></p>
+    <img src="./images/11_object_code2.JPG" alt="실습2" class="c_img">
+  </div>
+
+<script>
+    //실습1_let 객체이름 = new Object();
+    let phone = new Object();
+    const btn = document.getElementById('order');
+
+    btn.addEventListener('click',function(){
+      const c = document.getElementById('company').value;
+      const m = document.getElementById('model').value;
+      const cl = document.getElementById('color').value;
+
+      phone.company = c;
+      phone.model = m;
+      phone.color = cl;
+
+      //2. r객체를 호출하여 내용 출력하기
+      document.getElementById('result').innerHTML=`<p class="p01"><b>출력</b> : 나의 핸드폰 제조회사는 <span class="s01">${phone.company}</span>이고 모델명은<span class="s01">${phone.model}</span>이며, 색상은 <span class="s01">${phone.color}</span>입니다</p>`;
+    });
+
+    // 실습2_let 객체이름 = {이름 : 변수명(or 값)}
+    let f, l, a, h, w; // 1.변수선언
+    const cbtn = document.getElementById('confirm'); // 2. 확인 버튼 변수 생성
+    const res = document.getElementById('res_btn');  // 3. 취소 버튼 변수 생성
+
+    // 4. 확인 버튼 클릭시 함수 실행 _ 사용자가 입력한 내용 담기
+    cbtn.addEventListener('click',function(){
+
+    f = document.getElementById('firstname').value; 
+    l = document.getElementById('lastname').value;
+    a = document.getElementById('age').value;
+    h = document.getElementById('height').value;
+    w = document.getElementById('weight').value;
+
+      let info ={
+      firstname : f,
+      lastname : l,
+      age : a,
+      height : h,
+      weight : w
+    }
+      // 4.호출하기
+    document.getElementById('report').innerHTML =`<p><b>출력</b> : 제 이름은 <span class="s01">${f}${l}</span>이고, 나이는<span class="s01">${a}</span>세이며, 키는 <span class="s01">${h}</span>cm, 몸무게는 <span class="s01">${w}</span>kg입니다.</p>`;
+    });
+
+    // 5. 취소버튼 클릭 시 내용 취소
+    res.addEventListener('click',function(){
+      document.getElementById('report').innerText ="";
+    });
+  </script>
+</body>
+</html>

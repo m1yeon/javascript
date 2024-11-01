@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS_12_객체(object)_내장객체_수학(math)객체</title>
+    <link rel="stylesheet" href="./css/base.css">
+    <style>
+      /* 공통서식 */
+      h2{display: inline-block;padding: 0px 20px; transform: translateY(3px);}
+      /* h3{padding: 0px 0px 0px 0px;} */
+      .box{
+        background: #eee;
+        padding: 20px 20px;
+        border-radius: 20px;
+        margin-bottom: 20px;
+      }
+      .p01{padding-top: 15px;}
+      pre{background: #333; color: #fff; font-size: 14px; padding: 20px; box-sizing: border-box; border-radius: 12px; margin: 15px 0px 20px 0px; width: 100%;}
+      .c01{color: aquamarine;}
+      .c_img{width: 700px; padding-top: 15px;}
+      .txt01, .txt02{
+        font-weight: bold;
+      }
+
+      /* ----------------- */
+      .banner{
+        width:420px; height: 240px;
+        border: 4px; scrollbar-width: #000;
+        overflow: hidden;
+      }
+
+      .banner img{width: 100%; margin-top: 15px;}
+    </style>
+  </head>
+
+<body>
+  <a href="../index.html" title="메인페이지 바로가기" class="b_btn">
+    <img src="../images/icon_home.png" alt="icon_home">
+  </a>
+  <h2>12_객체(object)_내장객체_수학(math)객체</h2>
+  <p class="p01">&#8226; 수학객체는 다른 내장객체와는 다르게 new 키워드를 사용하지 않는 '정적인 객체'이다</p>
+  <p>&#8226; 객체(object)는 <b>메서드와 속성</b>으로 나누어진다</p>
+  <p>&#8226; <b>메서드</b> : 기능적인 동작을 말함 / 동사_document.write(문서작성)</p>
+  <p>&#8226; <b>속성</b> : 정해진 기능 -> 서식 등을 말함 / 명사_style.color(서식)</p>
+  <br>
+  <div class="box">
+    <h3>1. 수학객체의 속성</h3>
+      <p>&#8226; e : 상수</p>
+      <p>&#8226; PI : 원주율</p>
+      <p>&#8226; SQRT2</p>
+      <p>&#8226; SQRT1_2</p>
+      <p>&#8226; LN2</p>
+      <p>&#8226; LN10</p>
+      <p>&#8226; LOG2E</p>
+      <p>&#8226; LOG10E</p>
+  </div>
+
+  <div class="box">
+    <h3>2. 수학객체 메서드 종류</h3>
+      <p>&#8226; max(숫자1, 숫자2, 숫자3, ...) : 숫자들 중에서 최대값을 반환</p>
+      <p>&#8226; min(숫자1, 숫자2, 숫자3, ...) : 숫자들 중에서 최소값을 반환</p>  
+      <p>&#8226; round(숫자) : 소수점 첫째 자리를 반올림</p>
+      <p>&#8226; ceil(숫자) : 소수점 자리를 무조건 올림</p> 
+      <p>&#8226; floor(숫자) : 소수점 자리를 무조건 절삭</p>
+      <p>&#8226; abs(숫자) : 수의 절대값을 반환</p>  
+      <p>&#8226; random(숫자) : 0과1사이의 난수를 표시</p>
+  </div>
+  <div class="box">
+    <h3>3. 수학객체 실습하기</h3>
+    <p>a = 10;  /  b = 50;  /  c = 0.56789;</p>
+    <script>
+      // 1. 수학 객체 
+      let a, b, c;
+      a = 10;
+      b = 50;
+      c = 0.56789;
+  
+      let max = Math.max(a,b); //a,b중 최대값을 구하여 max변수에 저장
+      document.write(
+      '<p>&#8226; <span class=txt01>max &nbsp;</span> let max = Math.max(a,b); &nbsp; <span class=txt02>출력값 =' +max+'</span><br></p>');
+  
+      let min = Math.min(a,b);//a,b중 최소값을 구하여 min변수에 저장
+      document.write(
+      '<p>&#8226; <span class=txt01>min &nbsp;</span> let min = Math.min(a,b); &nbsp; <span class=txt02>출력값 =' +min+'</span><br><p>');
+  
+      let round = Math.round(c); //소수점 첫째자리에서 반올림(5이상ㅇ리 때만)
+      document.write(
+      '<p>&#8226; <span class=txt01>round &nbsp;</span> let round = Math.round(c); &nbsp; <span class=txt02>출력값 =' +round+'</span><br><p>');
+  
+      let ceil = Math.ceil(c); //소수점 첫째자리에서 무조건 올림
+      document.write(
+      '<p>&#8226; <span class=txt01>ceil &nbsp;</span> let ceil = Math.ceil(c); &nbsp; <span class=txt02>출력값 =' +ceil+'</span><br><p>');
+  
+      let floor = Math.floor(c); //소수점 첫째자리에서 무조건 절삭
+      document.write(
+      '<p>&#8226; <span class=txt01>floor &nbsp;</span> let floor = Math.floor(c); &nbsp; <span class=txt02>출력값 =' +floor+'</span><br><p>');
+  
+      let abs = Math.abs(-25); // 절대값(음수 -> 양수)
+      document.write(
+      '<p>&#8226; <span class=txt01>abs &nbsp;</span> let abs = Math.abs(c); &nbsp; <span class=txt02>출력값 =' +abs+'</span><br><p>');
+  
+      let random = Math.random(); //0~1사이의 난수
+      document.write(
+      '<p>&#8226; <span class=txt01>random &nbsp;</span> let random = Math.random(c); &nbsp; <span class=txt02>출력값 =' +random+'</span><br><p>');
+    </script>
+  </div>
+
+
+
+
+  <div class="box">
+    <h3>4. 수학객체 실습예제</h3>
+    <p>&#8226; 1~4까지 난수를 구하여 bannerN.jpg대입하여 랜덤 배너 만들기</p>
+    <div class="banner">
+      <img src="./images/1222_good_banner1.jpg" alt="굿네이버스 배너광고" id="banner_img">
+    </div>
+    <pre>
+      <span class="c01">//0~1사이의 난수 에 4를 곱해 0~3 의 숫자를 랜덤하게 출력</span>
+      let ran_n = Math.random()*4; 
+      <span class="c01">//소수점 첫째자리에서 무조건 올림 > 0.xxx ~ 3.xxx > 1~4로 만듬</span>
+      let ran01 = Math.ceil(ran_n); 
+
+      <span class="c01">//banner_img의 src 주소에 만든 랜덤 숫자를 이용해 랜덤 이미지 출력하기</span>
+      document.getElementById('banner_img').src='./images/1222_good_banner'+ran01+'.jpg';
+    </pre>
+  </div>
+
+  <script>
+    let ran_n = Math.random()*4; //0~1사이의 난수
+    let ran01 = Math.ceil(ran_n); //소수점 첫째자리에서 무조건 올림
+    // document.write(ran01);
+
+    document.getElementById('banner_img').src='./images/1222_good_banner'+ran01+'.jpg';
+  </script>
+
+</body>
+</html>

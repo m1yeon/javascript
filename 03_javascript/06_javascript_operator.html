@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/base.css" type="text/css">
+  <title>JS_06_자바스크립트 연산자</title>
+  <style>
+    h2{display: inline-block;padding: 0px 20px; transform: translateY(3px);}
+    h3{padding: 0px 0px 10px 0px;}
+		.box{
+			background: #eee;
+			padding: 20px 20px;
+			border-radius: 20px;
+			margin-bottom: 20px;
+		}
+    .p01{padding-top: 15px;}
+    pre{background: #333; color: #fff; font-size: 14px; padding: 20px; box-sizing: border-box; border-radius: 12px; margin-top: 15px;}
+    .c01{color: aquamarine;}
+  </style>
+
+</head>
+<body>
+  <a href="../index.html" title="메인페이지 바로가기" class="b_btn">
+		<img src="../images/icon_home.png" alt="icon_home">
+	</a>
+  <h2>06_자바스크립트 연산자</h2>
+  <p class="p01">자바스크립트 연산자는 <b>사용자가 조건식을 만들어서 원하는 결과를 출력하고자 할 때 사용하는 기호</b>이다.</p><br>
+  <div class="box">
+    <p>&#8226; 산술연산자 : +, - , *. /. %(나머지)</p>
+    <p>&#8226; 문자열 결합연산자 : +</p>
+    <p>&#8226; 비교연산자 : >, <, ==, ===</li>
+    <p>&#8226; 대입연산자 : =(오른쪽 값을 왼쪽에 대입), +=, -=</p>
+    <p>&#8226; 증감연산자 : ++, --</p>
+    <p>&#8226; 논리연산자 :  &&(and, 두 개의 조건 모두 만족해야 true) ||(파이프라인, or, 두 개의 조건 중 하나만 만족해도 true) !(no)</p>
+    <p>&#8226; 삼항조건연산자 : 조건식?실행문1:실행문2;(중요!)</p>
+    <p>&#8226; 타입연산자 : typeof(데이터 타입을 구분해주는 연산자임)</p>
+  </div>
+
+    <script>
+      let a = 97;
+      let b = 5;
+      // let c = prompt('숫자를 입력하세요.')
+      document.write('let a = 97; let b = 5; <br><br>');
+
+      //출력
+      // document.write(a+b+'<br>');
+      // document.write(a*b+'<br>');
+      // document.write(a%b+'<br>');
+
+      // if(c%2==0){
+      //   document.write('<p>입력하신 숫자는 <b>짝수</b>입니다</p>');
+      // }else{
+      //   document.write('<p>입력하신 숫자느 <b>홀수</b>입니다.</p>');
+      // }
+
+      //2. 비교연산자
+      let res = a > b;
+      document.write("<b>비교연산자</b><br>let res = a > b <b>"+res+'</b><br>');
+      res = a < b;
+      document.write("res = a < b; <b>"+res+'</b><br>');
+      res = a==b;
+      document.write("res = a==b; <b>"+res+'</b><br><br>');
+
+      //3. 대입연산자
+      res = a = b;
+      document.write("<b>대입연산자</b><br> res = a = b; <b>"+res+'</b><br><br>');
+
+      //4. 증감연산자 : ++(1씩 변수값에 더함) --(1씩 변수값에서 뻄)
+      res = a++; //변수명 a값을 출력하고 a의 뒤에 1을 증가한다는 뜻
+      res = ++a;
+      document.write("<b>증감연산자</b><br>res = a++; <b>"+res+"</b><br>");
+      document.write("res = ++a; <b>"+res+"</b><br><br>");
+
+      //5. 논리연산 : &&(and) ||(or) !(no)
+      document.write("<b>논리연산자</b><br> (1>2)&&(1<2) ="); //두 개의 조건 모두 만족해야 true
+      document.write((1>2)&&(1<2));
+      document.write("<br> (1>2)||(1<2) ="); //두 개의 조건 중 하나만 만족해도 true
+      document.write((1>2)||(1<2));
+
+      //6. 문자열 결합연산자
+      let name, region;
+      name = '홍길동';
+      region = '서울';
+
+      document.write("<br><br><b>문자열 결합 연산자</b><br>"+name+'이(가) 사는 지역은'+region+'입니다.');
+
+      //7. 삼항조건연산자 : 조건식?실행문1:실행문2;(중요!)
+      let score = prompt('점수를 입력하세요');
+      score > 60?alert('합격'):alert('불합격');
+
+      //8. 타입연산자 : typeof(데이터 타입을 구분해주는 연산자임)
+      document.write('<br><br><b>타입연산자_typeof(변수)</b><br>변수 score의 타입은'+typeof(score)+'입니다.<br><br>');
+
+      // 실습예제
+      document.write("<b>실습예제</b><br>사용자가 입력한 아이디가 'master, abcd, nave' 중 하나만 입력해도 인증이 되며,<br> 패스워드는 '1234'일 때 인증이 되도록 결과 값이 나오도록함<br>");
+      document.write("조건식?인증완료:인증실패");
+
+      let id, pw;
+      id = prompt('아이디 입력');
+      pw = prompt('비밀번호 입력');
+
+      // 방법1
+      //(id =='master'||id=='abcd'||id=='naver')&&(pw=='1234')?alert('인증완료'):alert('인증실패, 다시 시도하세요');
+
+      // 방법2 _ 조건을 변수에 담아버리기
+      let join = (id =='master'||id=='abcd'||id=='naver')&&(pw=='1234');
+      let result = join?alert('인증완료'):alert('인증실패, 다시 시도하세요');
+    </script>
+
+
+
+
+
+
+
+
+
+
+  
+</body>
+</html>
